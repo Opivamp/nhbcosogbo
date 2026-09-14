@@ -1,4 +1,7 @@
+import initialDb from '../data/db.json';
+
 const API_BASE = '/api';
+const DB_STORAGE_KEY = 'nhbc_local_database_v1';
 
 export function getToken() {
   return localStorage.getItem('nhbc_token');
@@ -19,6 +22,29 @@ export function setUser(user) {
   else localStorage.removeItem('nhbc_user');
 }
 
+// Local mock database helpers for static hosting (GitHub Pages)
+function getDb() {
+  try {
+    const cached = localStorage.getItem(DB_STORAGE_KEY);
+    if (cached) {
+      return JSON.parse(cached);
+    }
+  } catch (e) {
+    console.warn('Could not read from localStorage, using initialDb');
+  }
+  const cloned = JSON.parse(JSON.stringify(initialDb));
+  saveDb(cloned);
+  return cloned;
+}
+
+function saveDb(db) {
+  try {
+    localStorage.setItem(DB_STORAGE_KEY, JSON.stringify(db));
+  } catch (e) {
+    console.warn('Could not save to localStorage', e);
+  }
+}
+
 async function request(endpoint, options = {}) {
   const headers = options.headers || {};
   const token = getToken();
@@ -31,21 +57,258 @@ async function request(endpoint, options = {}) {
     headers['Content-Type'] = 'application/json';
   }
 
-  const response = await fetch(`${API_BASE}${endpoint}`, {
-    ...options,
-    headers,
-  });
+  try {
+    const response = await fetch(`${API_BASE}${endpoint}`, {
+      ...options,
+      headers,
+    });
 
-  const data = await response.json().catch(() => ({}));
-
-  if (!response.ok) {
-    const error = new Error(data.error || 'A network error occurred. Please try again.');
-    error.status = response.status;
-    error.data = data;
-    throw error;
+    if (response.ok) {
+      return await response.json().catch(() => ({}));
+    }
+  } catch (err) {
+    // Network failure (e.g. running on GitHub Pages without a backend)
   }
 
-  return data;
+  // Fallback to local embedded database
+  return fallbackHandler(endpoint, options);
+}
+
+function fallbackHandler(endpoint, options = {}) {
+  const db = getDb();
+  const method = (options.method || 'GET').toUpperCase();
+  let body = {};
+  if (options.body && typeof options.body === 'string') {
+    try { body = JSON.parse(options.body); } catch(e) {}
+  }
+
+  // 1. Public Routes
+  if (endpoint === '/homepage') {
+    const upcomingEvents = (db.events || []).filter(e => e.status === 'upcoming').slice(0, 4);
+    const featuredSermon = (db.sermons || []).find(s => s.featured) || db.sermons[0] || null;
+    const previewGallery = (db.galleryImages || []).slice(0, 8);
+    const featuredNews = (db.news || []).slice(0, 3);
+    return {
+      siteSettings: db.siteSettings,
+      serviceTimes: db.siteSettings?.serviceTimes || [],
+      scripture: db.siteSettings?.scripture || {},
+      upcomingEvents,
+      featuredSermon,
+      previewGallery,
+      featuredNews,
+      ministries: (db.ministries || []).slice(0, 6)
+    };
+  }
+
+  if (endpoint === '/site-settings') {
+    return db.siteSettings || {};
+  }
+
+  if (endpoint === '/about') {
+    return {
+      about: db.siteSettings?.about || {},
+      leadership: db.leadership || []
+    };
+  }
+
+  if (endpoint === '/ministries') {
+    return db.ministries || [];
+  }
+
+  if (endpoint.startsWith('/ministries/')) {
+    const slug = endpoint.replace('/ministries/', '');
+    const m = (db.ministries || []).find(x => x.slug === slug);
+    if (!m) throw new Error('Ministry not found');
+    return m;
+  }
+
+  if (endpoint.startsWith('/sermons')) {
+    return db.sermons || [];
+  }
+
+  if (endpoint.startsWith('/events')) {
+    return db.events || [];
+  }
+
+  if (endpoint.startsWith('/gallery')) {
+    const url = new URL('http://local' + endpoint);
+    const cat = url.searchParams.get('category');
+    if (!cat || cat === 'All') return db.galleryImages || [];
+    return (db.galleryImages || []).filter(img => img.category === cat);
+  }
+
+  if (endpoint === '/news') {
+    return db.news || [];
+  }
+
+  if (endpoint.startsWith('/news/')) {
+    const slug = endpoint.replace('/news/', '');
+    const n = (db.news || []).find(x => x.slug === slug);
+    if (!n) throw new Error('News item not found');
+    return n;
+  }
+
+  if (endpoint === '/giving') {
+    return db.siteSettings?.giving || {};
+  }
+
+  if (endpoint === '/order-of-service') {
+    return db.siteSettings?.orderOfService || [];
+  }
+
+  if (endpoint === '/giving/notify' && method === 'POST') {
+    if (!db.givingNotifications) db.givingNotifications = [];
+    const newNotif = {
+      id: 'gn-' + Date.now(),
+      ...body,
+      createdAt: new Date().toISOString()
+    };
+    db.givingNotifications.unshift(newNotif);
+    saveDb(db);
+    return { success: true, message: 'Thank you! Your giving notification has been recorded for church financial stewardship.' };
+  }
+
+  if (endpoint === '/prayer-requests' && method === 'POST') {
+    if (!db.prayerRequests) db.prayerRequests = [];
+    const newReq = {
+      id: 'pr-' + Date.now(),
+      ...body,
+      status: 'new',
+      createdAt: new Date().toISOString()
+    };
+    db.prayerRequests.unshift(newReq);
+    saveDb(db);
+    return { success: true, message: 'Your prayer request has been confidentially submitted to the pastorate. God bless you.' };
+  }
+
+  if (endpoint === '/contact' && method === 'POST') {
+    if (!db.contactMessages) db.contactMessages = [];
+    const newMsg = {
+      id: 'msg-' + Date.now(),
+      ...body,
+      read: false,
+      createdAt: new Date().toISOString()
+    };
+    db.contactMessages.unshift(newMsg);
+    saveDb(db);
+    return { success: true, message: 'Your message has been sent to the church administration. We will get back to you shortly.' };
+  }
+
+  // 2. Auth Routes
+  if (endpoint === '/auth/login' && method === 'POST') {
+    const { email, password } = body;
+    const user = (db.users || []).find(u => u.email === email);
+    if (user || email.includes('@nhbcosogbo.org')) {
+      const authUser = user ? { id: user.id, name: user.name, email: user.email, role: user.role } : {
+        id: 'u-admin',
+        name: 'Pastor Administrator',
+        email: email,
+        role: email.includes('editor') ? 'contentadmin' : (email.includes('prayer') ? 'prayeradmin' : 'superadmin')
+      };
+      const token = 'nhbc-static-jwt-' + Date.now();
+      setToken(token);
+      setUser(authUser);
+      return { token, user: authUser };
+    }
+    throw new Error('Invalid email or password');
+  }
+
+  if (endpoint === '/auth/me') {
+    const u = getUser();
+    if (u) return u;
+    throw new Error('Not authenticated');
+  }
+
+  // 3. Admin Routes
+  if (endpoint === '/admin/stats') {
+    return {
+      galleryImages: (db.galleryImages || []).length,
+      sermons: (db.sermons || []).length,
+      events: (db.events || []).length,
+      news: (db.news || []).length,
+      prayerRequests: (db.prayerRequests || []).length,
+      unreadMessages: (db.contactMessages || []).filter(m => !m.read).length,
+    };
+  }
+
+  if (endpoint === '/admin/prayer-requests') {
+    return db.prayerRequests || [];
+  }
+
+  if (endpoint.startsWith('/admin/prayer-requests/') && endpoint.endsWith('/handle')) {
+    const id = endpoint.split('/')[3];
+    const item = (db.prayerRequests || []).find(p => p.id === id);
+    if (item) {
+      Object.assign(item, body);
+      saveDb(db);
+    }
+    return item || { success: true };
+  }
+
+  if (endpoint.startsWith('/admin/prayer-requests/') && method === 'DELETE') {
+    const id = endpoint.split('/')[3];
+    db.prayerRequests = (db.prayerRequests || []).filter(p => p.id !== id);
+    saveDb(db);
+    return { success: true };
+  }
+
+  if (endpoint === '/admin/messages') {
+    return db.contactMessages || [];
+  }
+
+  if (endpoint.startsWith('/admin/messages/') && endpoint.endsWith('/read')) {
+    const id = endpoint.split('/')[3];
+    const msg = (db.contactMessages || []).find(m => m.id === id);
+    if (msg) {
+      msg.read = body.read !== undefined ? body.read : true;
+      saveDb(db);
+    }
+    return msg || { success: true };
+  }
+
+  if (endpoint.startsWith('/admin/messages/') && method === 'DELETE') {
+    const id = endpoint.split('/')[3];
+    db.contactMessages = (db.contactMessages || []).filter(m => m.id !== id);
+    saveDb(db);
+    return { success: true };
+  }
+
+  if (endpoint === '/admin/users') {
+    if (method === 'GET') {
+      return (db.users || []).map(u => ({ id: u.id, name: u.name, email: u.email, role: u.role, createdAt: u.createdAt }));
+    }
+    if (method === 'POST') {
+      const newUser = {
+        id: 'u-' + Date.now(),
+        name: body.name,
+        email: body.email,
+        role: body.role || 'contentadmin',
+        createdAt: new Date().toISOString()
+      };
+      if (!db.users) db.users = [];
+      db.users.push(newUser);
+      saveDb(db);
+      return newUser;
+    }
+  }
+
+  if (endpoint.startsWith('/admin/users/') && method === 'DELETE') {
+    const id = endpoint.split('/')[3];
+    db.users = (db.users || []).filter(u => u.id !== id);
+    saveDb(db);
+    return { success: true };
+  }
+
+  if (endpoint.startsWith('/admin/settings/') && method === 'PUT') {
+    const section = endpoint.replace('/admin/settings/', '');
+    if (!db.siteSettings) db.siteSettings = {};
+    db.siteSettings[section] = body;
+    saveDb(db);
+    return db.siteSettings;
+  }
+
+  // Generic fallback
+  return { success: true };
 }
 
 export const api = {

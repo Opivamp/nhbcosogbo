@@ -5,7 +5,7 @@
 
 ---
 
-## ðŸ“– Overview
+## ðŸ“� Overview
 
 This repository contains the complete official website and administrative Content Management System for **New Heritage Baptist Church (NHBC Osogbo)**. The platform is designed to provide church members, first-time visitors, and administrative staff with a modern, reverent, and trustworthy digital home.
 
