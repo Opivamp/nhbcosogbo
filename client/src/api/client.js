@@ -1,7 +1,7 @@
 import initialDb from '../data/db.json';
 
 const API_BASE = '/api';
-const DB_STORAGE_KEY = 'nhbc_local_database_v1';
+const DB_STORAGE_KEY = 'nhbc_local_database_v2';
 
 export function getToken() {
   return localStorage.getItem('nhbc_token');
@@ -88,9 +88,15 @@ function fallbackHandler(endpoint, options = {}) {
     const featuredSermon = (db.sermons || []).find(s => s.featured) || db.sermons[0] || null;
     const previewGallery = (db.galleryImages || []).slice(0, 8);
     const featuredNews = (db.news || []).slice(0, 3);
+    const rawServices = db.siteSettings?.serviceTimes;
+    const serviceTimes = Array.isArray(rawServices) && rawServices.length > 0
+      ? rawServices
+      : (rawServices && typeof rawServices === 'object')
+        ? Object.values(rawServices).filter(x => typeof x === 'object' && x !== null && x.name)
+        : [];
     return {
       siteSettings: db.siteSettings,
-      serviceTimes: db.siteSettings?.serviceTimes || [],
+      serviceTimes,
       scripture: db.siteSettings?.scripture || {},
       upcomingEvents,
       featuredSermon,

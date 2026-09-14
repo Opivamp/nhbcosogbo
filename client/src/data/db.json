@@ -55,31 +55,29 @@
       "pastorTitle": "Senior Pastor, NHBC Osogbo",
       "pastorImage": "/uploads/pastoral-welcome.svg"
     },
-    "serviceTimes": {
-      "0": {
+    "serviceTimes": [
+      {
         "id": "srv-1",
         "name": "Sunday School",
         "day": "Sunday",
-        "time": "7:00 AM – 8:00 AM",
+        "time": "7:00 AM � 8:00 AM",
         "description": "In-depth interactive study of the scriptures for children, youth, and adults."
       },
-      "1": {
+      {
         "id": "srv-2",
         "name": "Sunday Worship Service",
         "day": "Sunday",
-        "time": "8:00 AM – 10:30 AM",
+        "time": "8:00 AM � 10:30 AM",
         "description": "Holy Spirit-led celebration with uplifting praise, worship, and the preaching of the Word."
       },
-      "2": {
+      {
         "id": "srv-3",
         "name": "Midweek Prayer & Bible Study",
         "day": "Wednesday",
-        "time": "5:30 PM – 7:00 PM",
+        "time": "5:30 PM � 7:00 PM",
         "description": "Fervent corporate prayer, intercession, and doctrinal empowerment for daily victory."
-      },
-      "sundaySchool": "Sundays: 8:00 AM â€“ 9:00 AM",
-      "sundayWorship": "Sundays: 9:00 AM â€“ 11:00 AM"
-    },
+      }
+    ],
     "scripture": {
       "verse": "“But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.”",
       "reference": "Matthew 6:33 (KJV)",

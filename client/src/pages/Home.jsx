@@ -39,6 +39,16 @@ export default function Home() {
   }
 
   const { siteSettings, serviceTimes, scripture, upcomingEvents, featuredSermon, previewGallery, ministries } = data || {};
+  const defaultServices = [
+    { id: 'srv-1', name: 'Sunday School', day: 'Sunday', time: '7:00 AM � 8:00 AM', description: 'In-depth interactive study of the scriptures for children, youth, and adults.' },
+    { id: 'srv-2', name: 'Sunday Worship Service', day: 'Sunday', time: '8:00 AM � 10:30 AM', description: 'Holy Spirit-led celebration with uplifting praise, worship, and the preaching of the Word.' },
+    { id: 'srv-3', name: 'Midweek Prayer & Bible Study', day: 'Wednesday', time: '5:30 PM � 7:00 PM', description: 'Fervent corporate prayer, intercession, and doctrinal empowerment for daily victory.' }
+  ];
+  const serviceList = Array.isArray(serviceTimes) && serviceTimes.length > 0
+    ? serviceTimes
+    : (serviceTimes && typeof serviceTimes === 'object')
+      ? Object.values(serviceTimes).filter(x => typeof x === 'object' && x !== null && x.name)
+      : defaultServices;
   const hero = siteSettings?.hero || {};
   const welcome = siteSettings?.welcome || {};
 
@@ -205,7 +215,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {(serviceTimes || []).map((srv, idx) => (
+            {(serviceList.length > 0 ? serviceList : defaultServices).map((srv, idx) => (
               <div 
                 key={srv.id || idx}
                 className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 hover:border-gold-400/50 flex flex-col justify-between group"
