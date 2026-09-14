@@ -1,0 +1,23 @@
+{
+  "name": "New Heritage Baptist Church (NHBC Osogbo)",
+  "short_name": "NHBC Osogbo",
+  "description": "Official Web Portal and Community App for New Heritage Baptist Church in Osogbo, Osun State, Nigeria.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#023a97",
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,890 @@
+{
+  "users": [
+    {
+      "id": "usr-1",
+      "name": "Super Admin",
+      "email": "admin@nhbcosogbo.org",
+      "passwordHash": "$2a$10$gGPuY/XBh7IWElydDBjiReJU6l0ydijcpQ28e4mPh5Qedsi36DsTK",
+      "role": "superadmin",
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "usr-2",
+      "name": "Content Administrator",
+      "email": "editor@nhbcosogbo.org",
+      "passwordHash": "$2a$10$fTD8/okJusoF7DX20ESnrueVRQvi0Apb3asvIok0fcuNMM9ZCOI0C",
+      "role": "contentadmin",
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "usr-3",
+      "name": "Prayer & Pastoral Staff",
+      "email": "prayer@nhbcosogbo.org",
+      "passwordHash": "$2a$10$iH.iM9Dv4P6i8tDd6MN9jebvKSWXyDJ1Ph67YM/16wT0voavO5VEm",
+      "role": "prayeradmin",
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "usr-1789371046182",
+      "name": "Oyedemi Peter",
+      "email": "oyedemipeter8@gmail.com",
+      "passwordHash": "$2a$10$cj05QxjDv7cd6IPGd94s9eg0RNWbJCjzuhycuFfrCgsbuUvApYCHK",
+      "role": "contentadmin",
+      "createdAt": "2026-09-14T07:30:46.184Z"
+    }
+  ],
+  "siteSettings": {
+    "churchName": "New Heritage Baptist Church",
+    "shortName": "NHBC Osogbo",
+    "tagline": "A community of faith, hope, love, and transformation—growing together in Christ and serving our community.",
+    "logoUrl": "/nhbc-logo.png",
+    "hero": {
+      "headline": "Welcome to New Heritage Baptist Church, Osogbo",
+      "supportingText": "A community of faith, hope, love, and transformation—growing together in Christ and serving our community in Osogbo, Osun State.",
+      "primaryCtaText": "Plan Your Visit",
+      "primaryCtaLink": "/visit",
+      "secondaryCtaText": "Explore NHBC",
+      "secondaryCtaLink": "/about",
+      "bgImage": "/uploads/hero-sanctuary.svg"
+    },
+    "welcome": {
+      "heading": "Welcome to NHBC Osogbo",
+      "leadText": "Grace, peace, and love to you in the name of our Lord and Savior Jesus Christ.",
+      "content": "Whether you are joining us for the first time, looking for a church home, or seeking to deepen your walk with God, we are thrilled to welcome you. At New Heritage Baptist Church, Osogbo, we are a close-knit spiritual family dedicated to the undiluted Word of God, transformative worship, fervent prayer, and heartfelt fellowship. Come as you are, and discover God's extraordinary purpose for your life.",
+      "pastorName": "[Revd. Dr. Lead Pastor Name]",
+      "pastorTitle": "Senior Pastor, NHBC Osogbo",
+      "pastorImage": "/uploads/pastoral-welcome.svg"
+    },
+    "serviceTimes": {
+      "0": {
+        "id": "srv-1",
+        "name": "Sunday School",
+        "day": "Sunday",
+        "time": "7:00 AM – 8:00 AM",
+        "description": "In-depth interactive study of the scriptures for children, youth, and adults."
+      },
+      "1": {
+        "id": "srv-2",
+        "name": "Sunday Worship Service",
+        "day": "Sunday",
+        "time": "8:00 AM – 10:30 AM",
+        "description": "Holy Spirit-led celebration with uplifting praise, worship, and the preaching of the Word."
+      },
+      "2": {
+        "id": "srv-3",
+        "name": "Midweek Prayer & Bible Study",
+        "day": "Wednesday",
+        "time": "5:30 PM – 7:00 PM",
+        "description": "Fervent corporate prayer, intercession, and doctrinal empowerment for daily victory."
+      },
+      "sundaySchool": "Sundays: 8:00 AM â€“ 9:00 AM",
+      "sundayWorship": "Sundays: 9:00 AM â€“ 11:00 AM"
+    },
+    "scripture": {
+      "verse": "“But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.”",
+      "reference": "Matthew 6:33 (KJV)",
+      "theme": "Theme of the Year: Divine Heritage & Supernatural Flourishing"
+    },
+    "contact": {
+      "address": "[Church Auditorium, Off Gbongan-Osogbo Expressway / Commercial District, Osogbo, Osun State, Nigeria]",
+      "phone1": "[+234 (0) 803 000 0000]",
+      "phone2": "[+234 (0) 805 000 0000]",
+      "email": "[info@nhbcosogbo.org]",
+      "officeHours": "Tuesday – Friday: 9:00 AM – 4:00 PM | Sunday: 7:00 AM – 1:30 PM",
+      "googleMapsQuery": "Osogbo, Osun State, Nigeria",
+      "googleMapsEmbedUrl": "https://maps.google.com/maps?q=Osogbo%2C%20Osun%20State%2C%20Nigeria&t=&z=13&ie=UTF8&iwloc=&output=embed"
+    },
+    "socialLinks": {
+      "facebook": "[https://facebook.com/nhbcosogbo]",
+      "instagram": "[https://instagram.com/nhbcosogbo]",
+      "youtube": "[https://youtube.com/@nhbcosogbo]",
+      "whatsapp": "[https://wa.me/2348000000000]",
+      "twitter": "[https://x.com/nhbcosogbo]"
+    },
+    "giving": {
+      "message": "Giving is a profound act of worship and stewardship. Through your faithful tithes, offerings, and sacrificial giving, we sustain the preaching of the Gospel, support compassionate missions, and minister to our community.",
+      "accounts": [
+        {
+          "id": "acc-1",
+          "purpose": "Tithes & General Offerings",
+          "bankName": "[Designated Nigerian Bank, e.g. First Bank / GTBank / Zenith Bank]",
+          "accountName": "New Heritage Baptist Church Osogbo",
+          "accountNumber": "[0123456789]",
+          "branch": "[Osogbo Main Branch]",
+          "narrationTip": "Please indicate \"Tithe\" or \"Offering\" and your name/code in the narration."
+        },
+        {
+          "id": "acc-2",
+          "purpose": "Building & Mission Project Fund",
+          "bankName": "[Designated Nigerian Bank]",
+          "accountName": "New Heritage Baptist Church - Projects",
+          "accountNumber": "[9876543210]",
+          "branch": "[Osogbo Branch]",
+          "narrationTip": "Please indicate \"Project\" or \"Missions\" in the payment narration."
+        }
+      ],
+      "onlineNotice": "Online card and bank transfer checkout integration can be connected via Paystack or Flutterwave through the Admin settings."
+    },
+    "about": {
+      "story": "New Heritage Baptist Church (NHBC Osogbo) was birthed out of a divine vision to establish a beacon of biblical truth, Holy Spirit power, and genuine Christian discipleship in Osogbo, the capital city of Osun State. From humble beginnings as a fellowship of passionate believers, God has expanded the ministry into a thriving spiritual haven where families find hope, youths find godly identity, and leaders are equipped to influence society with the virtues of the Kingdom.",
+      "vision": "To be a vibrant, Christ-centered, Bible-believing church that glorifies God through authentic worship, discipleship, and holistic transformation of individuals, families, and society in Osogbo and beyond.",
+      "mission": "To lead people into a living, personal relationship with Jesus Christ, nurture them toward spiritual maturity through sound biblical teaching, foster genuine Christian fellowship, and equip believers for impactful ministry in our community and the world.",
+      "beliefs": [
+        {
+          "title": "The Authority of the Scriptures",
+          "text": "We believe the Holy Bible is the inspired, inerrant, and infallible Word of God, serving as the supreme authority in all matters of faith, doctrine, and conduct (2 Timothy 3:16-17)."
+        },
+        {
+          "title": "The Triune God",
+          "text": "We believe in one God eternally existent in three co-equal persons: Father, Son, and Holy Spirit (Matthew 28:19)."
+        },
+        {
+          "title": "Salvation by Grace through Faith",
+          "text": "Salvation is God's gracious gift to humanity through faith in Jesus Christ's atoning death and bodily resurrection, entirely apart from human works (Ephesians 2:8-9)."
+        },
+        {
+          "title": "Believer's Baptism by Immersion",
+          "text": "In accordance with New Testament practice, baptism is an outward testimony of inward faith, administered by full immersion in water in the name of the Father, Son, and Holy Spirit (Romans 6:3-4)."
+        },
+        {
+          "title": "Priesthood of All Believers",
+          "text": "Every regenerated believer has direct access to God through Christ and is uniquely endowed with spiritual gifts for Christian service and intercession (1 Peter 2:9)."
+        },
+        {
+          "title": "Autonomy and Fellowship of the Local Church",
+          "text": "Under the lordship of Christ, the local church is self-governing while maintaining joyful cooperative fellowship with the wider Baptist family and the Body of Christ."
+        },
+        {
+          "title": "The Great Commission & Second Coming",
+          "text": "We are called to proclaim the Gospel to every soul and eagerly await the blessed hope of Jesus Christ's triumphant return (Matthew 28:19-20; Titus 2:13)."
+        }
+      ],
+      "values": [
+        {
+          "name": "Biblical Truth",
+          "description": "Rooted firmly in sound doctrine, uncompromised preaching, and reverent application of God's Word."
+        },
+        {
+          "name": "Fervent Prayer",
+          "description": "Communing intimately with God, believing that prayer changes lives, situations, and communities."
+        },
+        {
+          "name": "Sacrificial Love",
+          "description": "Cultivating authentic warmth, deep fellowship, and selfless hospitality for members and visitors alike."
+        },
+        {
+          "name": "Holiness & Integrity",
+          "description": "Living lives worthy of Christ, walking with pure conscience and honest transparency before God and people."
+        },
+        {
+          "name": "Passionate Worship",
+          "description": "Offering God our highest adoration in spirit and in truth with heartfelt songs and obedient hearts."
+        },
+        {
+          "name": "Compassionate Outreach",
+          "description": "Active benevolence, evangelism, and community uplifting throughout Osogbo and rural mission fields."
+        }
+      ]
+    },
+    "orderOfService": [
+      {
+        "order": 1,
+        "activity": "Processional Hymn",
+        "detail": "Hymn 10: All Hail the Power of Jesus' Name"
+      },
+      {
+        "order": 2,
+        "activity": "Call to Worship & Scripture Invocation",
+        "detail": "Psalm 100:1-5"
+      },
+      {
+        "order": 3,
+        "activity": "Sunday School Review & Discussion",
+        "detail": "Topic: Living as Ambassadors of Christ in Contemporary Times"
+      },
+      {
+        "order": 4,
+        "activity": "Congregational Hymn of Praise",
+        "detail": "Hymn 45: Great Is Thy Faithfulness"
+      },
+      {
+        "order": 5,
+        "activity": "Pastoral Intercessory Prayer",
+        "detail": "Petitions for the Nation, Osun State, Families, and Church Missions"
+      },
+      {
+        "order": 6,
+        "activity": "Choral Anthem Ministration",
+        "detail": "Sanctuary Choir (The Heritage Voices)"
+      },
+      {
+        "order": 7,
+        "activity": "Worship Through Tithes & Offerings",
+        "detail": "2 Corinthians 9:7"
+      },
+      {
+        "order": 8,
+        "activity": "Pulpit Word Proclamation",
+        "detail": "Revd. [Pastor Name]"
+      },
+      {
+        "order": 9,
+        "activity": "Altar Call & Decision Hymn",
+        "detail": "Hymn 280: Just As I Am, Without One Plea"
+      },
+      {
+        "order": 10,
+        "activity": "Welcome of First-Time Guests & Announcements",
+        "detail": "Church Protocol & Hospitality Ministry"
+      },
+      {
+        "order": 11,
+        "activity": "Closing Hymn & Pastoral Benediction",
+        "detail": "Numbers 6:24-26"
+      }
+    ]
+  },
+  "leadership": [
+    {
+      "id": "lead-1",
+      "name": "Revd. Ibukunoluwa",
+      "role": "Senior Pastor / Minister-in-Charge",
+      "bio": "Called of God with a profound passion for biblical exposition, spiritual revival, and discipleship. Under his pastoral care, NHBC Osogbo has continued to witness supernatural expansion, sound doctrine, and community empowerment.",
+      "imageUrl": "/uploads/pastoral-welcome.svg",
+      "order": 1,
+      "image": "file:///C:/Users/Acer/OneDrive/Pictures/new%20picture/pastor.jpg",
+      "contact": ""
+    },
+    {
+      "id": "lead-2",
+      "name": "[Revd. Associate Pastor Name]",
+      "role": "Associate Pastor (Pastoral Care & Discipleship)",
+      "bio": "Devoted to pastoral counseling, visitation, Sunday School curriculum, and nurturing new converts into mature ambassadors of Christ.",
+      "imageUrl": "/uploads/pastoral-welcome.svg",
+      "order": 2
+    },
+    {
+      "id": "lead-3",
+      "name": "[Deacon / Deaconess Board Chair]",
+      "role": "Chairperson, Board of Deacons",
+      "bio": "Leading the diaconate team in servant ministry, welfare administration, ordinance preparations, and spiritual assistance to the pastoral council.",
+      "imageUrl": "/uploads/pastoral-welcome.svg",
+      "order": 3
+    },
+    {
+      "id": "lead-4",
+      "name": "[Church Secretary Name]",
+      "role": "Church Secretary / Administration",
+      "bio": "Overseeing church administrative documentation, official correspondence, membership records, and coordinating council logistics.",
+      "imageUrl": "/uploads/pastoral-welcome.svg",
+      "order": 4
+    },
+    {
+      "id": "lead-5",
+      "name": "[Minister of Music / Choir Director]",
+      "role": "Music Director (Heritage Voices)",
+      "bio": "Leading the praise team and sanctuary choir in inspiring, Holy Ghost-inspired anthems, hymns, and contemporary African worship.",
+      "imageUrl": "/uploads/choir-worship.svg",
+      "order": 5
+    },
+    {
+      "id": "lead-6",
+      "name": "[Youth Ministry Coordinator]",
+      "role": "Youth & Campus Ministry Director",
+      "bio": "Passionate about mentoring the next generation, coordinating youth conferences, career mentorship, and vibrant campus outreach across Osun State.",
+      "imageUrl": "/uploads/youth-fellowship.svg",
+      "order": 6
+    }
+  ],
+  "ministries": [
+    {
+      "id": "min-1",
+      "slug": "children-ministry",
+      "name": "Heritage Children Ministry",
+      "category": "Age Groups",
+      "shortDescription": "Nurturing tender hearts in God's love through engaging Bible lessons, fun activities, and godly values.",
+      "fullDescription": "The Children's Ministry at NHBC Osogbo provides a secure, joyful, and spiritually stimulating environment for children from infancy through primary school age. Through creative Bible storytelling, memory verses, action songs, and age-appropriate discipleship, we partner with parents to lay an unshakeable foundation for lifelong faith.",
+      "meetingSchedule": "Sundays during Worship Service (8:30 AM – 10:30 AM)",
+      "leader": "[Children Church Coordinator]",
+      "contactEmail": "children@nhbcosogbo.org",
+      "imageUrl": "/uploads/children-ministry.svg"
+    },
+    {
+      "id": "min-2",
+      "slug": "youth-young-adults",
+      "name": "Heritage Youths & Young Adults",
+      "category": "Age Groups",
+      "shortDescription": "Empowering young people to stand courageously for Christ, excel academically, and discover purpose.",
+      "fullDescription": "A dynamic community of teens, campus undergraduates, Corpers (NYSC), and young career professionals. We hold vibrant fellowships, campus outreaches, leadership training workshops, and spiritual retreats designed to address modern life challenges with eternal biblical truth.",
+      "meetingSchedule": "Saturdays at 4:30 PM & First Sundays at 4:00 PM",
+      "leader": "[Youth Pastor / Coordinator]",
+      "contactEmail": "youths@nhbcosogbo.org",
+      "imageUrl": "/uploads/youth-fellowship.svg"
+    },
+    {
+      "id": "min-3",
+      "slug": "heritage-voices-choir",
+      "name": "Heritage Voices Choir & Music",
+      "category": "Worship",
+      "shortDescription": "Ushering the congregation into God's manifest presence through spirit-filled praise, hymns, and anthems.",
+      "fullDescription": "Heritage Voices comprises consecrated vocalists and skilled instrumentalists called to minister through song. The ministry spans traditional Baptist hymnody, classical anthems, and lively contemporary Nigerian praise that stirs repentance, joy, and reverent adoration.",
+      "meetingSchedule": "Rehearsals: Thursdays at 5:30 PM & Saturdays at 4:00 PM",
+      "leader": "[Director of Music]",
+      "contactEmail": "music@nhbcosogbo.org",
+      "imageUrl": "/uploads/choir-worship.svg"
+    },
+    {
+      "id": "min-4",
+      "slug": "womens-missionary-union",
+      "name": "Women's Missionary Union (WMU)",
+      "category": "Fellowship",
+      "shortDescription": "Uniting women in prayer, compassionate benevolence, home-building, and worldwide missionary endeavor.",
+      "fullDescription": "The Women's Missionary Union encompasses Sunbeams, Girls' Auxiliary (GA), Lydia Auxiliary, and the Women's Missionary Society (WMS). Our mission is to equip women to model Christ in their families, advance community benevolence, and support missionary outposts in Nigeria.",
+      "meetingSchedule": "Tuesdays at 4:30 PM & Monthly General Meetings",
+      "leader": "[WMU President]",
+      "contactEmail": "wmu@nhbcosogbo.org",
+      "imageUrl": "/uploads/women-wmu.svg"
+    },
+    {
+      "id": "min-5",
+      "slug": "mens-missionary-union",
+      "name": "Men's Missionary Union (MMU)",
+      "category": "Fellowship",
+      "shortDescription": "Raising godly fathers, faithful husbands, and proactive men who lead their homes and church with integrity.",
+      "fullDescription": "The Men's Missionary Union unites the Royal Ambassadors (RA) and the Men's Fellowship. We challenge men to spiritual leadership, prayerful brotherhood, vocational mentorship, and active physical and spiritual support of the church's vision.",
+      "meetingSchedule": "Third Sunday of every month after service",
+      "leader": "[MMU President]",
+      "contactEmail": "mmu@nhbcosogbo.org",
+      "imageUrl": "/uploads/men-bmu.svg"
+    },
+    {
+      "id": "min-6",
+      "slug": "sunday-school-ministry",
+      "name": "Sunday School Department",
+      "category": "Discipleship",
+      "shortDescription": "The teaching arm of the church dedicated to systematic, verse-by-verse scriptural illumination.",
+      "fullDescription": "Sunday School is where believers of all age groups delve deeply into God's Word in small, interactive classes. With well-trained facilitators and comprehensive study guides, every lesson is geared toward practical Christian living and doctrinal soundness.",
+      "meetingSchedule": "Every Sunday from 7:00 AM – 8:00 AM",
+      "leader": "[Sunday School Superintendent]",
+      "contactEmail": "sundayschool@nhbcosogbo.org",
+      "imageUrl": "/uploads/hero-sanctuary.svg"
+    },
+    {
+      "id": "min-7",
+      "slug": "evangelism-missions",
+      "name": "Evangelism & Community Missions",
+      "category": "Outreach",
+      "shortDescription": "Taking the Gospel to streets, hospitals, schools, and unreached communities across Osun State.",
+      "fullDescription": "Fulfilling the Great Commission through tract distribution, open-air crusades, prison visitation, hospital ministry, and rural missionary support. We believe that an inward-focused church ceases to fulfill Christ's heartbeat.",
+      "meetingSchedule": "Second & Fourth Saturdays at 9:00 AM",
+      "leader": "[Evangelism Secretary]",
+      "contactEmail": "missions@nhbcosogbo.org",
+      "imageUrl": "/uploads/community-outreach.svg"
+    },
+    {
+      "id": "min-8",
+      "slug": "prayer-intercessory-ministry",
+      "name": "Intercessory Prayer Ministry",
+      "category": "Spiritual",
+      "shortDescription": "Standing in the gap for the church, our members, the city of Osogbo, and the nation of Nigeria.",
+      "fullDescription": "An anointed company of watchmen on the walls of Zion. The prayer team maintains regular vigils, fasts, and continuous intercessory coverage for church leadership, member prayer requests, and national righteousness.",
+      "meetingSchedule": "Fridays at 6:00 PM & Monthly Night Vigils (11:00 PM)",
+      "leader": "[Prayer Leader]",
+      "contactEmail": "prayer@nhbcosogbo.org",
+      "imageUrl": "/uploads/hero-sanctuary.svg"
+    }
+  ],
+  "sermons": [
+    {
+      "id": "srm-1",
+      "title": "Walking in the Exceeding Greatness of His Power",
+      "speaker": "[Revd. Dr. Senior Pastor Name]",
+      "date": "2026-09-06",
+      "scripture": "Ephesians 1:18-20",
+      "category": "Spiritual Growth",
+      "series": "Divine Inheritance",
+      "description": "An illuminating exposition on the immeasurable power made available to every believer in Christ. Discover how to shift from human anxiety to supernatural reliance on the Holy Spirit.",
+      "audioUrl": "https://archive.org/download/sample-audio-clip/sample.mp3",
+      "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "thumbnailUrl": "/uploads/sermon-faith.svg",
+      "duration": "48 mins",
+      "featured": true
+    },
+    {
+      "id": "srm-2",
+      "title": "The Unfailing Covenant of Divine Preservation",
+      "speaker": "[Revd. Dr. Senior Pastor Name]",
+      "date": "2026-08-30",
+      "scripture": "Psalm 121:1-8",
+      "category": "Faith & Encouragement",
+      "series": "Psalms of Ascent",
+      "description": "A message of comfort and divine assurance during turbulent times. The Lord who keeps Israel neither slumbers nor sleeps—He is your shade upon your right hand.",
+      "audioUrl": "https://archive.org/download/sample-audio-clip/sample.mp3",
+      "videoUrl": "",
+      "thumbnailUrl": "/uploads/sermon-grace.svg",
+      "duration": "52 mins",
+      "featured": false
+    },
+    {
+      "id": "srm-3",
+      "title": "Stewardship that Unlocks Kingdom Abundance",
+      "speaker": "[Guest Baptist Minister Name]",
+      "date": "2026-08-23",
+      "scripture": "2 Corinthians 9:6-11",
+      "category": "Stewardship",
+      "series": "Kingdom Principles",
+      "description": "Understanding that God loves a cheerful giver. Biblical principles for managing finances, honoring God with tithes, and sowing seed toward eternal rewards.",
+      "audioUrl": "https://archive.org/download/sample-audio-clip/sample.mp3",
+      "videoUrl": "",
+      "thumbnailUrl": "/uploads/hero-sanctuary.svg",
+      "duration": "44 mins",
+      "featured": false
+    },
+    {
+      "id": "srm-4",
+      "title": "Raising an Altared Generation in Perilous Times",
+      "speaker": "[Revd. Associate Pastor Name]",
+      "date": "2026-08-16",
+      "scripture": "Judges 2:10; 1 Samuel 3:1-10",
+      "category": "Family & Youth",
+      "series": "Generational Faith",
+      "description": "A clarion call to parents and youth to kindle the flame of family worship, personal holiness, and spiritual sensitivity amidst cultural pressures.",
+      "audioUrl": "https://archive.org/download/sample-audio-clip/sample.mp3",
+      "videoUrl": "",
+      "thumbnailUrl": "/uploads/youth-fellowship.svg",
+      "duration": "50 mins",
+      "featured": false
+    }
+  ],
+  "events": [
+    {
+      "id": "evt-1",
+      "title": "Annual Believers' Heritage Convention 2026",
+      "date": "2026-10-15",
+      "endDate": "2026-10-18",
+      "time": "9:00 AM & 5:00 PM Daily",
+      "location": "NHBC Main Sanctuary, Along Osogbo-Ikirun Road, Osogbo",
+      "category": "Conferences",
+      "description": "Our premier annual gathering of faith, revival, healing, and prophetic empowerment. Featuring anointed guest speakers, powerful worship by Heritage Voices, and impartation for all spheres of life.",
+      "imageUrl": "/uploads/annual-convention.svg",
+      "registrationLink": "https://forms.gle/sampleNHBCRegister",
+      "featured": true,
+      "status": "upcoming"
+    },
+    {
+      "id": "evt-2",
+      "title": "Night of Supernatural Wonders & Praises",
+      "date": "2026-09-25",
+      "endDate": "2026-09-25",
+      "time": "10:30 PM – 4:30 AM",
+      "location": "NHBC Church Auditorium, Osogbo",
+      "category": "Worship",
+      "description": "An all-night marathon of uninterrupted high praise, intense intercession, communion, and breakthroughs for individuals, families, and our city.",
+      "imageUrl": "/uploads/choir-worship.svg",
+      "registrationLink": "",
+      "featured": true,
+      "status": "upcoming"
+    },
+    {
+      "id": "evt-3",
+      "title": "Osogbo Community Free Health & Care Outreach",
+      "date": "2026-10-03",
+      "endDate": "2026-10-03",
+      "time": "9:00 AM – 2:00 PM",
+      "location": "NHBC Premises & Community Centers, Osogbo",
+      "category": "Outreach",
+      "description": "Free medical consultations, blood pressure & sugar screenings, medication distribution, welfare food packages, and the sharing of God's saving love.",
+      "imageUrl": "/uploads/community-outreach.svg",
+      "registrationLink": "",
+      "featured": false,
+      "status": "upcoming"
+    },
+    {
+      "id": "evt-4",
+      "title": "Youth Leadership & Career Ignition Summit",
+      "date": "2026-08-08",
+      "endDate": "2026-08-08",
+      "time": "10:00 AM – 3:00 PM",
+      "location": "NHBC Fellowship Hall, Osogbo",
+      "category": "Youth",
+      "description": "Equipping secondary, tertiary, and career youths with tech skills, entrepreneurship mentorship, and spiritual foundations.",
+      "imageUrl": "/uploads/youth-fellowship.svg",
+      "registrationLink": "",
+      "featured": false,
+      "status": "past"
+    }
+  ],
+  "galleryCategories": [
+    "Church Services",
+    "Worship",
+    "Conferences",
+    "Outreach",
+    "Youth",
+    "Children",
+    "Women",
+    "Men",
+    "Special Events",
+    "Community Activities",
+    "Easter Celebration"
+  ],
+  "galleryImages": [
+    {
+      "id": "gal-1789368249636-3",
+      "title": "239434",
+      "caption": "fine",
+      "description": "fine",
+      "category": "Conferences",
+      "event": "",
+      "date": "2026-09-14",
+      "imageUrl": "/uploads/nhbc-239443-1789368249621-312772.jpg",
+      "url": "/uploads/nhbc-239443-1789368249621-312772.jpg",
+      "featured": false,
+      "order": 21
+    },
+    {
+      "id": "gal-1789368249636-2",
+      "title": "239434",
+      "caption": "fine",
+      "description": "fine",
+      "category": "Conferences",
+      "event": "",
+      "date": "2026-09-14",
+      "imageUrl": "/uploads/nhbc-239437-1789368249621-31733.jpg",
+      "url": "/uploads/nhbc-239437-1789368249621-31733.jpg",
+      "featured": false,
+      "order": 19
+    },
+    {
+      "id": "gal-1789368249636-1",
+      "title": "239434",
+      "caption": "fine",
+      "description": "fine",
+      "category": "Conferences",
+      "event": "",
+      "date": "2026-09-14",
+      "imageUrl": "/uploads/nhbc-239436-1789368249620-964195.jpg",
+      "url": "/uploads/nhbc-239436-1789368249620-964195.jpg",
+      "featured": false,
+      "order": 17
+    },
+    {
+      "id": "gal-1789368249636-0",
+      "title": "239434",
+      "caption": "fine",
+      "description": "fine",
+      "category": "Conferences",
+      "event": "",
+      "date": "2026-09-14",
+      "imageUrl": "/uploads/nhbc-239434-1789368249617-897812.jpg",
+      "url": "/uploads/nhbc-239434-1789368249617-897812.jpg",
+      "featured": false,
+      "order": 15
+    },
+    {
+      "id": "gal-1789358046092-5",
+      "title": "Sunday Service",
+      "caption": "The service was awesome",
+      "description": "The service was awesome",
+      "category": "Church Services",
+      "event": "",
+      "date": "2026-09-13",
+      "imageUrl": "/uploads/nhbc-239481-1789358046068-744957.jpg",
+      "url": "/uploads/nhbc-239481-1789358046068-744957.jpg",
+      "featured": false,
+      "order": 19
+    },
+    {
+      "id": "gal-1789358046092-4",
+      "title": "Sunday Service",
+      "caption": "The service was awesome",
+      "description": "The service was awesome",
+      "category": "Church Services",
+      "event": "",
+      "date": "2026-09-13",
+      "imageUrl": "/uploads/nhbc-239480-1789358046067-357328.jpg",
+      "url": "/uploads/nhbc-239480-1789358046067-357328.jpg",
+      "featured": false,
+      "order": 17
+    },
+    {
+      "id": "gal-1789358046092-3",
+      "title": "Sunday Service",
+      "caption": "The service was awesome",
+      "description": "The service was awesome",
+      "category": "Church Services",
+      "event": "",
+      "date": "2026-09-13",
+      "imageUrl": "/uploads/nhbc-239474-1789358046066-941240.jpg",
+      "url": "/uploads/nhbc-239474-1789358046066-941240.jpg",
+      "featured": false,
+      "order": 15
+    },
+    {
+      "id": "gal-1789358046092-2",
+      "title": "Sunday Service",
+      "caption": "The service was awesome",
+      "description": "The service was awesome",
+      "category": "Church Services",
+      "event": "",
+      "date": "2026-09-13",
+      "imageUrl": "/uploads/nhbc-239469-1789358046066-670104.jpg",
+      "url": "/uploads/nhbc-239469-1789358046066-670104.jpg",
+      "featured": false,
+      "order": 13
+    },
+    {
+      "id": "gal-1789358046092-1",
+      "title": "Sunday Service",
+      "caption": "The service was awesome",
+      "description": "The service was awesome",
+      "category": "Church Services",
+      "event": "",
+      "date": "2026-09-13",
+      "imageUrl": "/uploads/nhbc-239451-1789358046064-661016.jpg",
+      "url": "/uploads/nhbc-239451-1789358046064-661016.jpg",
+      "featured": false,
+      "order": 11
+    },
+    {
+      "id": "gal-1789358046092-0",
+      "title": "Sunday Service",
+      "caption": "The service was awesome",
+      "description": "The service was awesome",
+      "category": "Church Services",
+      "event": "",
+      "date": "2026-09-13",
+      "imageUrl": "/uploads/nhbc-239450-1789358046063-700805.jpg",
+      "url": "/uploads/nhbc-239450-1789358046063-700805.jpg",
+      "featured": false,
+      "order": 9
+    },
+    {
+      "id": "gal-1",
+      "title": "Joyful Congregational Worship",
+      "caption": "The congregation lifted in unified adoration during Sunday celebration service at NHBC Osogbo.",
+      "category": "Worship",
+      "event": "Sunday Worship Service",
+      "date": "2026-09-06",
+      "imageUrl": "/uploads/hero-sanctuary.svg",
+      "featured": true,
+      "order": 1
+    },
+    {
+      "id": "gal-2",
+      "title": "Heritage Voices Ministering",
+      "caption": "Choir members rendering special choral anthem during the quarterly Thanksgiving Service.",
+      "category": "Worship",
+      "event": "Thanksgiving Service",
+      "date": "2026-08-30",
+      "imageUrl": "/uploads/choir-worship.svg",
+      "featured": true,
+      "order": 2
+    },
+    {
+      "id": "gal-3",
+      "title": "Youth Fire & Fellowship",
+      "caption": "Youths engaged in vibrant interactive Bible discussions and prayer at the Saturday gathering.",
+      "category": "Youth",
+      "event": "Youth Fellowship",
+      "date": "2026-08-22",
+      "imageUrl": "/uploads/youth-fellowship.svg",
+      "featured": true,
+      "order": 3
+    },
+    {
+      "id": "gal-4",
+      "title": "Precious Heritage Children Church",
+      "caption": "Smiles, Bible memory verse recitations, and joyous singing in the children's chapel.",
+      "category": "Children",
+      "event": "Children Sunday",
+      "date": "2026-08-16",
+      "imageUrl": "/uploads/children-ministry.svg",
+      "featured": true,
+      "order": 4
+    },
+    {
+      "id": "gal-5",
+      "title": "Women's Missionary Union Prayer Session",
+      "caption": "Mothers and sisters uniting in fervent intercession for homes, children, and church growth.",
+      "category": "Women",
+      "event": "WMU Annual Conference",
+      "date": "2026-08-09",
+      "imageUrl": "/uploads/women-wmu.svg",
+      "featured": true,
+      "order": 5
+    },
+    {
+      "id": "gal-6",
+      "title": "Men's Missionary Union Breakfast Meeting",
+      "caption": "Brethren fellowshipping over the Word of God and charting community impact initiatives.",
+      "category": "Men",
+      "event": "MMU Monthly Fellowship",
+      "date": "2026-08-02",
+      "imageUrl": "/uploads/men-bmu.svg",
+      "featured": true,
+      "order": 6
+    },
+    {
+      "id": "gal-7",
+      "title": "Osogbo City Medical Outreach",
+      "caption": "Health workers and church volunteers serving local residents with free care and medicine.",
+      "category": "Outreach",
+      "event": "Community Outreach",
+      "date": "2026-07-25",
+      "imageUrl": "/uploads/community-outreach.svg",
+      "featured": false,
+      "order": 7
+    },
+    {
+      "id": "gal-8",
+      "title": "Sacred Communion Table",
+      "caption": "Reverent moments during the ordinance of the Lord's Supper.",
+      "category": "Church Services",
+      "event": "Holy Communion",
+      "date": "2026-07-05",
+      "imageUrl": "/uploads/communion-service.svg",
+      "featured": false,
+      "order": 8
+    }
+  ],
+  "news": [
+    {
+      "id": "news-1",
+      "slug": "preparations-underway-believers-heritage-convention-2026",
+      "title": "Preparations in Full Gear for the Believers' Heritage Convention 2026",
+      "date": "2026-09-08",
+      "author": "Church Media Office",
+      "category": "Announcements",
+      "excerpt": "The church leadership invites all members, friends, and the general public in Osogbo to our flagship 4-day annual convention.",
+      "content": "We are delighted to announce that all preparations for our 2026 Believers' Heritage Convention are underway. The theme for this year's encounter promises a transformative outpouring of grace, prophetic direction, and divine establishment. We encourage members to invite neighbors, colleagues, and family members. Transportation arrangements from major junctions across Osogbo will be communicated soon.",
+      "imageUrl": "/uploads/annual-convention.svg",
+      "featured": true
+    },
+    {
+      "id": "news-2",
+      "slug": "new-children-church-curriculum-launched",
+      "title": "Innovative Visual Bible Curriculum Launched in Children's Church",
+      "date": "2026-08-28",
+      "author": "Children Ministry Directorate",
+      "category": "Ministry News",
+      "excerpt": "Our Children's Department has rolled out an enriched biblical teaching curriculum with illustrated workbooks and memory crafts.",
+      "content": "To foster deeper understanding and love for God's Word among our young ones, the Children Ministry has introduced a specialized illustrated curriculum. Every Sunday, children will explore biblical narratives with tactile crafts, audio-visual Bible lessons, and take-home family devotion sheets. Parents are encouraged to review these sheets with their children during the week.",
+      "imageUrl": "/uploads/children-ministry.svg",
+      "featured": false
+    },
+    {
+      "id": "news-3",
+      "slug": "wmu-annual-empowerment-outreach-report",
+      "title": "WMU Concludes Successful Skills Acquisition and Food Donation Outreach",
+      "date": "2026-08-14",
+      "author": "WMU Secretariat",
+      "category": "Outreach",
+      "excerpt": "Over 120 women and youths benefited from free vocational training in catering, craft-making, and financial budgeting.",
+      "content": "The Women's Missionary Union of NHBC Osogbo successfully rounded off its annual community outreach week. Aside from donating food provisions and toiletries to widows and elderly community members, participants received hands-on coaching in soap making, confectionery, and modern home management. Glory to God for touching lives through our collective giving.",
+      "imageUrl": "/uploads/women-wmu.svg",
+      "featured": false
+    }
+  ],
+  "prayerRequests": [
+    {
+      "id": "pry-1789366496890",
+      "name": "Anonymous",
+      "contactInfo": "Confidential",
+      "prayerCategory": "General Prayer",
+      "request": "hdhbh hs h sheb hfhbkh  hwhabbzsbk ah bqbwhh hj h  hh shhbh",
+      "contactPreference": "Prayer only",
+      "isAnonymous": true,
+      "handled": true,
+      "pastoralNotes": "",
+      "submittedAt": "2026-09-14T06:14:56.890Z"
+    },
+    {
+      "id": "pry-1789364241423",
+      "name": "Brother Timothy Test",
+      "contactInfo": "Not provided",
+      "prayerCategory": "General Prayer",
+      "request": "Praying for open doors and divine wisdom for NHBC Osogbo outreach.",
+      "contactPreference": "Prayer only",
+      "isAnonymous": false,
+      "handled": false,
+      "pastoralNotes": "",
+      "submittedAt": "2026-09-14T05:37:21.423Z"
+    },
+    {
+      "id": "pry-1789355911139",
+      "name": "Brother Timothy Test",
+      "contactInfo": "Not provided",
+      "prayerCategory": "General Prayer",
+      "request": "Praying for open doors and divine wisdom for NHBC Osogbo outreach.",
+      "contactPreference": "Prayer only",
+      "isAnonymous": false,
+      "handled": false,
+      "pastoralNotes": "",
+      "submittedAt": "2026-09-14T03:18:31.140Z"
+    },
+    {
+      "id": "pry-1",
+      "name": "[Brother Samson O.]",
+      "contactInfo": "08031234567 | samson@example.com",
+      "prayerCategory": "Spiritual Growth & Healing",
+      "request": "Kindly stand with me in prayers for complete physical recovery from a prolonged illness and for the spiritual strength to continue serving the Lord faithfully.",
+      "contactPreference": "Phone Call / WhatsApp",
+      "isAnonymous": false,
+      "handled": true,
+      "pastoralNotes": "Visited and prayed with the brother; recovering steadily.",
+      "submittedAt": "2026-09-02T10:15:00.000Z"
+    }
+  ],
+  "contactMessages": [
+    {
+      "id": "msg-giv-1789367675153",
+      "name": "[Giving Notification] Sister Blessing Okon",
+      "email": "blessing@example.com",
+      "phone": "08055443322",
+      "subject": "Transfer Notification: Building Project (25,000)",
+      "message": "A bank transfer notification has been submitted by Sister Blessing Okon (Phone: 08055443322, Email: blessing@example.com).\nAmount: 25,000\nPurpose: Building Project\nBank/Reference: Zenith Bank Mobile Transfer - Ref: TXN-984210\nDate: 2026-09-14",
+      "date": "2026-09-14",
+      "read": false
+    },
+    {
+      "id": "msg-giv-1789367562338",
+      "name": "[Giving Notification] Sister Blessing Okon",
+      "email": "blessing@example.com",
+      "phone": "08055443322",
+      "subject": "Transfer Notification: Building Project (25,000)",
+      "message": "A bank transfer notification has been submitted by Sister Blessing Okon (Phone: 08055443322, Email: blessing@example.com).\nAmount: 25,000\nPurpose: Building Project\nBank/Reference: Zenith Bank Mobile Transfer - Ref: TXN-984210\nDate: 2026-09-14",
+      "date": "2026-09-14",
+      "read": false
+    },
+    {
+      "id": "msg-1789355938321",
+      "name": "Sister Folake Adeleke",
+      "email": "folake@example.com",
+      "phone": "08099887766",
+      "subject": "Inquiry on Children Ministry",
+      "message": "Hello, please what are the age brackets for Kingdom Kids children church?",
+      "read": false,
+      "receivedAt": "2026-09-14T03:18:58.321Z"
+    },
+    {
+      "id": "msg-1",
+      "name": "[Sister Victoria A.]",
+      "email": "victoria@example.com",
+      "phone": "08059876543",
+      "subject": "Inquiry on Children Sunday School Times & Bus Pickup",
+      "message": "Good day, my family recently relocated to Osogbo and we are planning to worship with NHBC this Sunday. Could you kindly provide information on whether you have a church bus route passing through the Ring Road area?",
+      "read": true,
+      "receivedAt": "2026-09-05T08:45:00.000Z"
+    },
+    {
+      "id": "msg-2",
+      "name": "[Mr. David Adeleke]",
+      "email": "david@example.com",
+      "phone": "08023456789",
+      "subject": "Joining Heritage Voices Choir",
+      "message": "Hello, I play the bass guitar and would love to audition or join the music ministry rehearsal this week. What time is the rehearsal?",
+      "read": false,
+      "receivedAt": "2026-09-12T16:20:00.000Z"
+    }
+  ]
+}
