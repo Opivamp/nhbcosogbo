@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api/client';
 import { 
-  Calendar, Clock, MapPin, Play, ChevronRight, BookOpen, Heart, 
+  Calendar, Clock, MapPin, Play, ChevronRight, ChevronLeft, BookOpen, Heart, 
   Sparkles, ArrowRight, Quote 
 } from 'lucide-react';
 import AudioPlayer from '../components/ui/AudioPlayer';
@@ -12,6 +12,51 @@ export default function Home() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const heroSlides = [
+    {
+      image: './uploads/nhbc-239450-1789358046063-700805.jpg',
+      tag: 'Spiritual Family in Osogbo',
+      title: 'Welcome to New Heritage Baptist Church, Osogbo',
+      subtitle: 'A Christ-centered sanctuary of faith, hope, love, and divine transformation—growing together in Christ.',
+    },
+    {
+      image: './uploads/nhbc-239469-1789358046066-670104.jpg',
+      tag: 'Holy Spirit-Led Worship',
+      title: 'Experience Heartfelt Praise & Sound Biblical Truth',
+      subtitle: 'Join our uplifting worship services where lives are refreshed, renewed, and grounded in the Word of God.',
+    },
+    {
+      image: './uploads/nhbc-239481-1789358046068-744957.jpg',
+      tag: 'Kingdom Impact & Community',
+      title: 'Impacting Families, Transforming Our Community',
+      subtitle: 'Fostering sincere Christian brotherhood, fervent prayer, and gospel outreach across Osogbo and Osun State.',
+    },
+    {
+      image: './uploads/nhbc-239474-1789358046066-941240.jpg',
+      tag: 'Next Generation Discipleship',
+      title: 'Nurturing Children, Youth & Adults in Truth',
+      subtitle: 'Equipping every age group with solid doctrinal foundations, moral integrity, and spiritual victory.',
+    }
+  ];
+
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5500);
+    return () => clearInterval(timer);
+  }, [isHovered, heroSlides.length]);
+
+  const prevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+  };
+
+  const nextSlide = () => {
+    setActiveSlide((prev) => (prev + 1) % heroSlides.length);
+  };
 
   useEffect(() => {
     async function fetchHome() {
@@ -54,53 +99,116 @@ export default function Home() {
 
   return (
     <div className="w-full">
-      {/* 1. HERO SECTION */}
-      <section className="relative min-h-[85vh] flex items-center justify-center bg-navy-950 text-white overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105"
-          style={{ backgroundImage: `url(${hero.bgImage || './uploads/hero-sanctuary.svg'})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/85 to-navy-900/80 backdrop-blur-[2px]" />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-gold-500/10 blur-[120px] rounded-full pointer-events-none" />
+      {/* 1. HERO SECTION WITH BACKGROUND SLIDER & ANIMATIONS */}
+      <section 
+        className="relative min-h-[88vh] flex items-center justify-center bg-navy-950 text-white overflow-hidden select-none"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Background Image Carousel Slides */}
+        {heroSlides.map((slide, index) => {
+          const isActive = index === activeSlide;
+          return (
+            <div
+              key={index}
+              className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out ${
+                isActive ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
+              }`}
+              style={{
+                backgroundImage: `url(${slide.image})`,
+                transitionProperty: 'opacity, transform',
+              }}
+            />
+          );
+        })}
 
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center">
-          {/* Official Church Emblem */}
-          <div className="mb-6 group">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white p-1.5 shadow-2xl ring-4 ring-gold-400/40 flex items-center justify-center mx-auto group-hover:scale-105 transition-transform duration-300">
+        {/* Multi-layered Cinematic Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/85 to-navy-900/80 backdrop-blur-[1.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-navy-950/70" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[550px] h-[550px] bg-gold-500/15 blur-[140px] rounded-full pointer-events-none animate-pulse-aura" />
+
+        {/* Carousel Previous / Next Floating Arrows (Desktop & Tablet) */}
+        <button
+          type="button"
+          onClick={prevSlide}
+          aria-label="Previous Slide"
+          className="hidden sm:flex absolute left-4 md:left-8 z-30 w-12 h-12 rounded-full bg-navy-900/60 hover:bg-gold-500 hover:text-navy-950 text-white border border-white/20 hover:border-gold-400/80 backdrop-blur-md items-center justify-center transition-all duration-300 shadow-xl hover:scale-110 active:scale-95 group"
+        >
+          <ChevronLeft className="w-6 h-6 transition-transform group-hover:-translate-x-0.5" />
+        </button>
+
+        <button
+          type="button"
+          onClick={nextSlide}
+          aria-label="Next Slide"
+          className="hidden sm:flex absolute right-4 md:right-8 z-30 w-12 h-12 rounded-full bg-navy-900/60 hover:bg-gold-500 hover:text-navy-950 text-white border border-white/20 hover:border-gold-400/80 backdrop-blur-md items-center justify-center transition-all duration-300 shadow-xl hover:scale-110 active:scale-95 group"
+        >
+          <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-0.5" />
+        </button>
+
+        {/* Hero Central Content */}
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center z-20">
+          {/* Official Church Emblem with Float & Gold Glow Aura */}
+          <div className="mb-6 group relative">
+            <div className="absolute -inset-2.5 rounded-full bg-gradient-to-r from-gold-400 via-amber-300 to-gold-500 blur-xl opacity-40 animate-pulse-aura pointer-events-none" />
+            <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white p-1.5 shadow-2xl ring-4 ring-gold-400/60 flex items-center justify-center mx-auto animate-float-slow group-hover:scale-105 transition-transform duration-300">
               <img 
                 src="./nhbc-logo.png" 
                 alt="New Heritage Baptist Church Osogbo Emblem" 
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain drop-shadow"
               />
             </div>
           </div>
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-400 text-xs sm:text-sm font-medium tracking-wide uppercase mb-6">
-            <Sparkles className="w-3.5 h-3.5" /> Welcome to Our Spiritual Family
+
+          {/* Animated Slide Tag & Content */}
+          <div key={activeSlide} className="animate-fade-in-up flex flex-col items-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-300 text-xs sm:text-sm font-medium tracking-wide uppercase mb-6 shadow-sm backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5 text-gold-400 animate-pulse" />
+              <span>{heroSlides[activeSlide].tag}</span>
+            </div>
+
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl leading-[1.15] mb-6 drop-shadow-lg">
+              {heroSlides[activeSlide].title}
+            </h1>
+
+            <p className="text-base sm:text-xl text-slate-200 max-w-2xl font-light leading-relaxed mb-10 drop-shadow">
+              {heroSlides[activeSlide].subtitle}
+            </p>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl leading-[1.15] mb-6 drop-shadow-md">
-            {hero.headline || 'Welcome to New Heritage Baptist Church, Osogbo'}
-          </h1>
-
-          <p className="text-base sm:text-xl text-slate-200 max-w-2xl font-light leading-relaxed mb-10">
-            {hero.supportingText || 'A community of faith, hope, love, and transformation—growing together in Christ and serving our community in Osogbo, Osun State.'}
-          </p>
-
+          {/* Primary Action Buttons with Shimmer and Elevation */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
             <Link
               to={hero.primaryCtaLink || '/visit'}
-              className="w-full sm:w-auto px-8 py-4 rounded-full font-semibold text-navy-950 bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-300 hover:to-gold-400 shadow-xl shadow-gold-500/20 hover:shadow-gold-500/30 transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 text-base"
+              className="w-full sm:w-auto px-8 py-4 rounded-full font-semibold text-navy-950 bg-gradient-to-r from-gold-400 via-amber-300 to-gold-500 hover:from-gold-300 hover:to-gold-400 shadow-xl shadow-gold-500/30 hover:shadow-gold-500/50 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 text-base group"
             >
               <span>{hero.primaryCtaText || 'Plan Your Visit'}</span>
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
 
             <Link
               to={hero.secondaryCtaLink || '/about'}
-              className="w-full sm:w-auto px-8 py-4 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-sm transition-all duration-200 flex items-center justify-center gap-2 text-base"
+              className="w-full sm:w-auto px-8 py-4 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2 text-base"
             >
               <span>{hero.secondaryCtaText || 'Explore NHBC'}</span>
             </Link>
+          </div>
+
+          {/* Slide Indicators / Pagination Dots */}
+          <div className="flex items-center gap-3 mt-12 z-20">
+            {heroSlides.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setActiveSlide(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`transition-all duration-500 rounded-full h-2.5 ${
+                  idx === activeSlide
+                    ? 'w-8 bg-gold-400 shadow-md shadow-gold-400/50'
+                    : 'w-2.5 bg-white/30 hover:bg-white/60'
+                }`}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -109,7 +217,7 @@ export default function Home() {
       <section className="bg-navy-900 border-b border-navy-800 text-white relative z-10 -mt-2 shadow-2xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-navy-800">
-            <div className="flex items-center gap-4 py-2 md:py-0 md:px-4">
+            <div className="flex items-center gap-4 py-3 md:py-1 md:px-4 rounded-xl hover:bg-white/5 transition-all duration-300 group cursor-default">
               <div className="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 flex-shrink-0">
                 <Clock className="w-6 h-6" />
               </div>
