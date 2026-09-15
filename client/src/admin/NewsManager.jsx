@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Bell, Plus, Edit2, Trash2, Calendar, Tag, Search, X } from 'lucide-react';
 import { api } from '../api/client';
+import FileUploadInput from '../components/ui/FileUploadInput';
 
 export default function NewsManager() {
   const [news, setNews] = useState([]);
@@ -55,7 +56,7 @@ export default function NewsManager() {
       date: item.date || '',
       excerpt: item.excerpt || '',
       content: item.content || '',
-      image: item.image || '',
+      image: item.image || item.imageUrl || '',
     });
     setModalOpen(true);
   };
@@ -63,10 +64,15 @@ export default function NewsManager() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const payload = {
+        ...formData,
+        image: formData.image,
+        imageUrl: formData.image,
+      };
       if (editingItem) {
-        await api.updateNews(editingItem.id, formData);
+        await api.updateNews(editingItem.id, payload);
       } else {
-        await api.createNews(formData);
+        await api.createNews(payload);
       }
       setModalOpen(false);
       loadNews();
@@ -230,6 +236,14 @@ export default function NewsManager() {
                   className="w-full px-3 py-2 rounded-lg border border-sand-300 text-sm text-navy-900"
                 />
               </div>
+
+              <FileUploadInput
+                label="Bulletin / Featured Image"
+                value={formData.image || ''}
+                onChange={(val) => setFormData((prev) => ({ ...prev, image: val, imageUrl: val }))}
+                helperText="Upload bulletin graphic/flyer from device or paste image URL."
+              />
+
               <div>
                 <label className="block text-xs font-semibold text-navy-700 uppercase mb-1">
                   Full Announcement Content *

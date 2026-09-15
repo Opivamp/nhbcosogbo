@@ -162,7 +162,7 @@ export default function About() {
               >
                 <div className="h-64 bg-navy-950 overflow-hidden relative">
                   <img 
-                    src={lead.imageUrl || './uploads/pastoral-welcome.svg'} 
+                    src={lead.imageUrl || lead.image || './uploads/pastoral-welcome.svg'} 
                     alt={lead.name}
                     className="w-full h-full object-cover"
                   />

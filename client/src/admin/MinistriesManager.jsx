@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Users, Plus, Edit2, Trash2, Clock, UserCheck, X } from 'lucide-react';
 import { api } from '../api/client';
+import FileUploadInput from '../components/ui/FileUploadInput';
 
 export default function MinistriesManager() {
   const [ministries, setMinistries] = useState([]);
@@ -15,6 +16,7 @@ export default function MinistriesManager() {
     meetingTime: 'Sundays after service',
     leader: 'Ministry Coordinator',
     icon: 'Users',
+    imageUrl: '',
   });
 
   useEffect(() => {
@@ -42,6 +44,7 @@ export default function MinistriesManager() {
       meetingTime: 'Sundays after service',
       leader: 'Ministry Coordinator',
       icon: 'Users',
+      imageUrl: '',
     });
     setModalOpen(true);
   };
@@ -55,6 +58,7 @@ export default function MinistriesManager() {
       meetingTime: min.meetingTime || '',
       leader: min.leader || '',
       icon: min.icon || 'Users',
+      imageUrl: min.imageUrl || '',
     });
     setModalOpen(true);
   };
@@ -215,6 +219,13 @@ export default function MinistriesManager() {
                   className="w-full px-3 py-2 rounded-lg border border-sand-300 text-sm text-navy-900"
                 />
               </div>
+
+              <FileUploadInput
+                label="Ministry Banner / Group Photo"
+                value={formData.imageUrl || ''}
+                onChange={(val) => setFormData((prev) => ({ ...prev, imageUrl: val }))}
+                helperText="Upload group or fellowship photo from device or paste image URL."
+              />
 
               <div className="flex justify-end gap-2 pt-3">
                 <button

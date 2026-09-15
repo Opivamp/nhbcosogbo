@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Plus, Edit2, Trash2, Clock, MapPin, Search, X } from 'lucide-react';
 import { api } from '../api/client';
+import FileUploadInput from '../components/ui/FileUploadInput';
 
 export default function EventsManager() {
   const [events, setEvents] = useState([]);
@@ -16,6 +17,7 @@ export default function EventsManager() {
     time: '9:00 AM',
     location: 'Church Sanctuary, Osogbo',
     description: '',
+    imageUrl: '',
     featured: false,
   });
 
@@ -44,6 +46,7 @@ export default function EventsManager() {
       time: '9:00 AM',
       location: 'Church Sanctuary, Osogbo',
       description: '',
+      imageUrl: '',
       featured: false,
     });
     setModalOpen(true);
@@ -58,6 +61,7 @@ export default function EventsManager() {
       time: ev.time || '',
       location: ev.location || '',
       description: ev.description || '',
+      imageUrl: ev.imageUrl || '',
       featured: !!ev.featured,
     });
     setModalOpen(true);
@@ -288,6 +292,13 @@ export default function EventsManager() {
                   className="w-full px-3 py-2 rounded-lg border border-sand-300 text-sm text-navy-900"
                 />
               </div>
+
+              <FileUploadInput
+                label="Event Flier / Banner Poster"
+                value={formData.imageUrl || ''}
+                onChange={(val) => setFormData((prev) => ({ ...prev, imageUrl: val }))}
+                helperText="Upload event publicity flier from device or paste image URL."
+              />
 
               <div className="flex items-center gap-2">
                 <input

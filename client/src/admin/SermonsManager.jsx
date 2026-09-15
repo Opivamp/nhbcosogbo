@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Plus, Edit2, Trash2, Video, Music, Calendar, Search, X } from 'lucide-react';
 import { api } from '../api/client';
+import FileUploadInput from '../components/ui/FileUploadInput';
 
 export default function SermonsManager() {
   const [sermons, setSermons] = useState([]);
@@ -18,6 +19,7 @@ export default function SermonsManager() {
     description: '',
     videoUrl: '',
     audioUrl: '',
+    thumbnailUrl: '',
   });
 
   useEffect(() => {
@@ -47,6 +49,7 @@ export default function SermonsManager() {
       description: '',
       videoUrl: '',
       audioUrl: '',
+      thumbnailUrl: '',
     });
     setModalOpen(true);
   };
@@ -62,6 +65,7 @@ export default function SermonsManager() {
       description: sermon.description || '',
       videoUrl: sermon.videoUrl || '',
       audioUrl: sermon.audioUrl || '',
+      thumbnailUrl: sermon.thumbnailUrl || sermon.coverImage || '',
     });
     setModalOpen(true);
   };
@@ -287,31 +291,32 @@ export default function SermonsManager() {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-semibold text-navy-700 uppercase mb-1">
-                  Video URL (YouTube / Stream)
-                </label>
-                <input
-                  type="text"
-                  placeholder="https://www.youtube.com/watch?v=..."
-                  value={formData.videoUrl}
-                  onChange={(e) => setFormData({ ...formData, videoUrl: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-sand-300 text-sm text-navy-900"
-                />
-              </div>
+              <FileUploadInput
+                label="Sermon Cover / Banner Graphic"
+                value={formData.thumbnailUrl || ''}
+                onChange={(val) => setFormData((prev) => ({ ...prev, thumbnailUrl: val }))}
+                helperText="Upload sermon artwork from device or enter image URL."
+              />
 
-              <div>
-                <label className="block text-xs font-semibold text-navy-700 uppercase mb-1">
-                  Audio URL (MP3 Link)
-                </label>
-                <input
-                  type="text"
-                  placeholder="https://.../sermon.mp3"
-                  value={formData.audioUrl}
-                  onChange={(e) => setFormData({ ...formData, audioUrl: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-sand-300 text-sm text-navy-900"
-                />
-              </div>
+              <FileUploadInput
+                label="Sermon Video (Device Upload or YouTube Link)"
+                mediaType="video"
+                accept="video/*"
+                placeholder="https://www.youtube.com/watch?v=... or upload video"
+                value={formData.videoUrl || ''}
+                onChange={(val) => setFormData((prev) => ({ ...prev, videoUrl: val }))}
+                helperText="Upload video file (MP4/WebM) from device or paste YouTube/Vimeo stream URL."
+              />
+
+              <FileUploadInput
+                label="Sermon Audio Recording (Device Upload or MP3 Link)"
+                mediaType="audio"
+                accept="audio/*"
+                placeholder="https://.../sermon.mp3 or upload audio"
+                value={formData.audioUrl || ''}
+                onChange={(val) => setFormData((prev) => ({ ...prev, audioUrl: val }))}
+                helperText="Upload sermon audio (MP3/WAV/Voice Note) from device or enter audio link."
+              />
 
               <div>
                 <label className="block text-xs font-semibold text-navy-700 uppercase mb-1">

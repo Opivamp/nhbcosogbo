@@ -19,6 +19,12 @@ export default function VideoModal({ isOpen, videoUrl, title, onClose }) {
   if (!isOpen) return null;
 
   let embedUrl = videoUrl;
+  const isDirectVideo = videoUrl?.startsWith('data:video/') || 
+    videoUrl?.endsWith('.mp4') || 
+    videoUrl?.endsWith('.webm') || 
+    videoUrl?.endsWith('.ogg') ||
+    videoUrl?.includes('/uploads/');
+
   if (videoUrl?.includes('youtube.com/watch?v=')) {
     const videoId = videoUrl.split('v=')[1]?.split('&')[0];
     embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
@@ -47,7 +53,14 @@ export default function VideoModal({ isOpen, videoUrl, title, onClose }) {
         </div>
 
         <div className="relative pt-[56.25%] bg-black">
-          {embedUrl ? (
+          {isDirectVideo ? (
+            <video
+              src={videoUrl}
+              controls
+              autoPlay
+              className="absolute inset-0 w-full h-full object-contain"
+            />
+          ) : embedUrl ? (
             <iframe 
               src={embedUrl}
               title={title || 'Sermon Video'}

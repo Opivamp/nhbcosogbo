@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { UserCheck, Plus, Edit2, Trash2, Mail, Phone, X } from 'lucide-react';
 import { api } from '../api/client';
+import FileUploadInput from '../components/ui/FileUploadInput';
 
 export default function LeadershipManager() {
   const [leadership, setLeadership] = useState([]);
@@ -50,7 +51,7 @@ export default function LeadershipManager() {
       name: ldr.name || '',
       role: ldr.role || '',
       bio: ldr.bio || '',
-      image: ldr.image || '',
+      image: ldr.image || ldr.imageUrl || '',
       contact: ldr.contact || '',
     });
     setModalOpen(true);
@@ -59,10 +60,15 @@ export default function LeadershipManager() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const payload = {
+        ...formData,
+        image: formData.image,
+        imageUrl: formData.image,
+      };
       if (editingLeader) {
-        await api.updateLeader(editingLeader.id, formData);
+        await api.updateLeader(editingLeader.id, payload);
       } else {
-        await api.createLeader(formData);
+        await api.createLeader(payload);
       }
       setModalOpen(false);
       loadLeadership();
@@ -186,18 +192,12 @@ export default function LeadershipManager() {
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-semibold text-navy-700 uppercase mb-1">
-                  Photo URL
-                </label>
-                <input
-                  type="text"
-                  placeholder="./uploads/pastor.jpg"
-                  value={formData.image}
-                  onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-sand-300 text-sm text-navy-900"
-                />
-              </div>
+              <FileUploadInput
+                label="Leader Profile Photo"
+                value={formData.image}
+                onChange={(val) => setFormData({ ...formData, image: val, imageUrl: val })}
+                helperText="Upload official leader photo from device or paste image URL."
+              />
 
               <div>
                 <label className="block text-xs font-semibold text-navy-700 uppercase mb-1">

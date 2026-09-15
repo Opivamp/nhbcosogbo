@@ -14,6 +14,7 @@ import {
   Download,
 } from 'lucide-react';
 import { api } from '../api/client';
+import FileUploadInput from '../components/ui/FileUploadInput';
 
 export default function SiteSettings() {
   const [activeTab, setActiveTab] = useState('general');
@@ -31,7 +32,25 @@ export default function SiteSettings() {
     setLoading(true);
     try {
       const data = await api.getSiteSettings();
-      setSettings(data);
+      const general = data.general || {
+        churchName: data.churchName || 'New Heritage Baptist Church',
+        tagline: data.tagline || '',
+        address: data.address || '',
+        phone: data.phone || '',
+        email: data.email || '',
+        vision: data.vision || '',
+        mission: data.mission || '',
+        logoUrl: data.logoUrl || './nhbc-logo.png',
+        pastorImage: data.welcome?.pastorImage || './uploads/pastor.jpg',
+      };
+      setSettings({
+        ...data,
+        general: {
+          ...general,
+          logoUrl: general.logoUrl || data.logoUrl || './nhbc-logo.png',
+          pastorImage: general.pastorImage || data.welcome?.pastorImage || './uploads/pastor.jpg',
+        },
+      });
     } catch (err) {
       console.error('Failed to load settings', err);
     } finally {
@@ -44,7 +63,14 @@ export default function SiteSettings() {
     setError('');
     setSuccess('');
     try {
-      await api.updateSettings(section, settings[section]);
+      if (section === 'general') {
+        await api.updateSettings('general', settings.general);
+        if (settings.general?.logoUrl) {
+          await api.updateSettings('logoUrl', settings.general.logoUrl);
+        }
+      } else {
+        await api.updateSettings(section, settings[section]);
+      }
       setSuccess(`Successfully saved ${section} settings!`);
       setTimeout(() => setSuccess(''), 3000);
     } catch (err) {
@@ -255,6 +281,33 @@ export default function SiteSettings() {
                   })
                 }
                 className="w-full px-3 py-2 rounded-lg border border-sand-300 text-sm text-navy-900"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-sand-200">
+              <FileUploadInput
+                label="Church Official Logo / Emblem"
+                value={settings.general?.logoUrl || './nhbc-logo.png'}
+                onChange={(val) =>
+                  setSettings({
+                    ...settings,
+                    general: { ...settings.general, logoUrl: val },
+                    logoUrl: val,
+                  })
+                }
+                helperText="Upload official church logo from device or enter image path."
+              />
+
+              <FileUploadInput
+                label="Pastoral Welcome Photo"
+                value={settings.general?.pastorImage || './uploads/pastor.jpg'}
+                onChange={(val) =>
+                  setSettings({
+                    ...settings,
+                    general: { ...settings.general, pastorImage: val },
+                  })
+                }
+                helperText="Portrait of the Pastor displayed on the homepage pastoral greeting."
               />
             </div>
 
