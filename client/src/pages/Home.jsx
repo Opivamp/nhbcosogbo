@@ -122,10 +122,11 @@ export default function Home() {
           );
         })}
 
-        {/* Multi-layered Cinematic Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/85 to-navy-900/80 backdrop-blur-[1.5px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-navy-950/70" />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[550px] h-[550px] bg-gold-500/15 blur-[140px] rounded-full pointer-events-none animate-pulse-aura" />
+        {/* Lighter, Crystal-Clear Overlays — Background Photos are Bright and Clearly Visible */}
+        <div className="absolute inset-0 bg-navy-950/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-navy-950/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/40 via-transparent to-navy-950/40" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[550px] h-[550px] bg-gold-500/10 blur-[140px] rounded-full pointer-events-none" />
 
         {/* Carousel Previous / Next Floating Arrows (Desktop & Tablet) */}
         <button
@@ -167,11 +168,11 @@ export default function Home() {
               <span>{heroSlides[activeSlide].tag}</span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl leading-[1.15] mb-6 drop-shadow-lg">
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl leading-[1.15] mb-6 drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)]">
               {heroSlides[activeSlide].title}
             </h1>
 
-            <p className="text-base sm:text-xl text-slate-200 max-w-2xl font-light leading-relaxed mb-10 drop-shadow">
+            <p className="text-base sm:text-xl text-slate-100 max-w-2xl font-normal leading-relaxed mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
               {heroSlides[activeSlide].subtitle}
             </p>
           </div>
