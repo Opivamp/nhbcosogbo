@@ -20,7 +20,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="./assets/index-BoZ2qr-A.js"></script>
+  
+    <!-- GitHub Pages Single Page App Redirect -->
+    <script>
+      (function() {
+        var path = window.location.pathname;
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+        if (path.indexOf('/nhbcosogbo') === 0) {
+          var route = path.replace('/nhbcosogbo', '').replace(/^\//, '');
+          if (route && !route.startsWith('assets/')) {
+            window.location.replace('/nhbcosogbo/#/' + route + search + hash);
+          }
+        } else if (path === '/gallery' || path === '/about' || path === '/sermons' || 
+                   path === '/events' || path === '/news' || path === '/give' || 
+                   path === '/visit' || path === '/prayer' || path === '/contact' || 
+                   path.indexOf('/admin') === 0) {
+          window.location.replace('/nhbcosogbo/#' + path + search + hash);
+        }
+      })();
+    </script>
+
+    <script type="module" crossorigin src="./assets/index-Dbq9pg-d.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-DP0FMEEC.css">
   </head>
   <body class="bg-[#FAF9F6] text-slate-800 font-sans antialiased selection:bg-gold-500 selection:text-white">

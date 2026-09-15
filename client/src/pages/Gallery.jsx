@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Camera, Tag, Calendar, Eye, Sparkles } from 'lucide-react';
 import { api } from '../api/client';
 import Lightbox from '../components/ui/Lightbox';
@@ -130,12 +131,11 @@ export default function Gallery() {
             <p className="text-navy-200 text-sm md:text-base leading-relaxed mb-6">
               Every Sunday and weekly fellowship is an encounter with the divine and a celebration of Christian brotherhood. We invite you to worship with us and make everlasting memories in His presence.
             </p>
-            <a
-              href="/visit"
+            <Link to="/visit"
               className="inline-flex items-center px-6 py-3 rounded-full bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold text-sm transition-colors shadow-md"
             >
               Plan Your Visit This Sunday
-            </a>
+            </Link>
           </div>
         </div>
       </div>

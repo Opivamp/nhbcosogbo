@@ -127,15 +127,11 @@ export default function AdminLayout({ children }) {
           </div>
 
           <div className="flex items-center gap-2">
-            <a
-              href="/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-navy-300 hover:text-white text-xs font-medium transition-colors"
+            <Link to="/" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-navy-300 hover:text-white text-xs font-medium transition-colors"
               title="View Public Site"
             >
               <ExternalLink className="w-3.5 h-3.5" /> Site
-            </a>
+            </Link>
             <button
               onClick={handleLogout}
               className="flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-lg bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs font-medium border border-red-800/40 transition-colors"
@@ -160,14 +156,10 @@ export default function AdminLayout({ children }) {
             </p>
           </div>
           <div className="flex items-center gap-4">
-            <a
-              href="/"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sand-100 hover:bg-sand-200 text-navy-800 text-xs font-semibold border border-sand-300 transition-colors"
+            <Link to="/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sand-100 hover:bg-sand-200 text-navy-800 text-xs font-semibold border border-sand-300 transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5 text-gold-600" /> View Live Website
-            </a>
+            </Link>
             <div className="flex items-center gap-2 pl-4 border-l border-sand-200">
               <div className="w-8 h-8 rounded-full bg-navy-900 text-gold-400 font-bold flex items-center justify-center text-xs">
                 {user?.name ? user.name[0].toUpperCase() : 'A'}

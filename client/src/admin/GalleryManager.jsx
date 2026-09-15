@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import {
   Upload,
@@ -160,14 +161,11 @@ export default function GalleryManager() {
             Upload and organize church photos. Uploaded images instantly appear on the public gallery.
           </p>
         </div>
-        <a
-          href="/gallery"
-          target="_blank"
-          rel="noreferrer"
+        <Link to="/gallery" target="_blank" rel="noreferrer"
           className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-navy-900 text-gold-400 hover:bg-navy-800 text-xs font-semibold shadow-sm transition-colors self-start"
         >
           <ExternalLink className="w-4 h-4" /> View Public Gallery
-        </a>
+        </Link>
       </div>
 
       {/* Upload Box */}

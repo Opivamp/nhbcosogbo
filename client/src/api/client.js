@@ -22,8 +22,6 @@ export function setUser(user) {
   else localStorage.removeItem('nhbc_user');
 }
 
-// Local mock database helpers for static hosting (GitHub Pages)
-
 function sanitizeAssetUrls(data) {
   if (!data) return data;
   if (typeof data === 'string') {
@@ -45,6 +43,7 @@ function sanitizeAssetUrls(data) {
   return data;
 }
 
+// Local mock database helpers for static hosting (GitHub Pages)
 function getDb() {
   try {
     const cached = localStorage.getItem(DB_STORAGE_KEY);
@@ -65,6 +64,52 @@ function saveDb(db) {
   } catch (e) {
     console.warn('Could not save to localStorage', e);
   }
+}
+
+// Helper to convert uploaded File object to optimized Base64 data URL
+async function fileToDataUrl(file) {
+  return new Promise((resolve) => {
+    if (!file || !(file instanceof Blob)) {
+      return resolve('./uploads/hero-sanctuary.svg');
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result;
+      if (file.type && file.type.startsWith('image/')) {
+        const img = new Image();
+        img.onload = () => {
+          const maxDim = 1200;
+          let w = img.width;
+          let h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) {
+              h = Math.round((h * maxDim) / w);
+              w = maxDim;
+            } else {
+              w = Math.round((w * maxDim) / h);
+              h = maxDim;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          try {
+            resolve(canvas.toDataURL('image/jpeg', 0.8));
+          } catch (e) {
+            resolve(result);
+          }
+        };
+        img.onerror = () => resolve(result);
+        img.src = result;
+      } else {
+        resolve(result);
+      }
+    };
+    reader.onerror = () => resolve('./uploads/hero-sanctuary.svg');
+    reader.readAsDataURL(file);
+  });
 }
 
 async function request(endpoint, options = {}) {
@@ -92,19 +137,35 @@ async function request(endpoint, options = {}) {
     // Network failure (e.g. running on GitHub Pages without a backend)
   }
 
-  // Fallback to local embedded database
-  return fallbackHandler(endpoint, options);
+  // Fallback to local embedded database with full CRUD and persistence
+  return await fallbackHandler(endpoint, options);
 }
 
-function fallbackHandler(endpoint, options = {}) {
+async function fallbackHandler(endpoint, options = {}) {
   const db = getDb();
   const method = (options.method || 'GET').toUpperCase();
   let body = {};
-  if (options.body && typeof options.body === 'string') {
-    try { body = JSON.parse(options.body); } catch(e) {}
+  const uploadedFiles = [];
+
+  if (options.body) {
+    if (options.body instanceof FormData) {
+      for (const [key, val] of options.body.entries()) {
+        if (val instanceof File) {
+          uploadedFiles.push(val);
+        } else {
+          body[key] = val;
+        }
+      }
+    } else if (typeof options.body === 'string') {
+      try { body = JSON.parse(options.body); } catch(e) {}
+    } else if (typeof options.body === 'object') {
+      body = options.body;
+    }
   }
 
-  // 1. Public Routes
+  // -------------------------------------------------------------
+  // 1. PUBLIC ROUTES
+  // -------------------------------------------------------------
   if (endpoint === '/homepage') {
     const upcomingEvents = (db.events || []).filter(e => e.status === 'upcoming').slice(0, 4);
     const featuredSermon = (db.sermons || []).find(s => s.featured) || db.sermons[0] || null;
@@ -151,7 +212,18 @@ function fallbackHandler(endpoint, options = {}) {
   }
 
   if (endpoint.startsWith('/sermons')) {
-    return db.sermons || [];
+    const url = new URL('http://local' + endpoint);
+    let list = db.sermons || [];
+    const search = url.searchParams.get('search');
+    const speaker = url.searchParams.get('speaker');
+    const category = url.searchParams.get('category');
+    if (search) {
+      const q = search.toLowerCase();
+      list = list.filter(s => (s.title + ' ' + (s.speaker || s.preacher || '') + ' ' + (s.scripture || '')).toLowerCase().includes(q));
+    }
+    if (speaker) list = list.filter(s => (s.speaker || s.preacher) === speaker);
+    if (category && category !== 'All') list = list.filter(s => s.category === category);
+    return list;
   }
 
   if (endpoint.startsWith('/events')) {
@@ -161,8 +233,26 @@ function fallbackHandler(endpoint, options = {}) {
   if (endpoint.startsWith('/gallery')) {
     const url = new URL('http://local' + endpoint);
     const cat = url.searchParams.get('category');
-    if (!cat || cat === 'All') return db.galleryImages || [];
-    return (db.galleryImages || []).filter(img => img.category === cat);
+    let list = db.galleryImages || [];
+    if (cat && cat !== 'All') {
+      list = list.filter(img => img.category?.toLowerCase() === cat.toLowerCase());
+    }
+    const defaultCategories = [
+      'Sunday Services',
+      'Worship & Choir',
+      'Youth Ministry',
+      'Children Ministry',
+      'Community Outreach',
+      'Special Events'
+    ];
+    const categories = db.galleryCategories && db.galleryCategories.length > 0
+      ? db.galleryCategories
+      : defaultCategories;
+
+    return {
+      categories: ['All', ...categories.filter(c => c !== 'All')],
+      images: list
+    };
   }
 
   if (endpoint === '/news') {
@@ -222,43 +312,382 @@ function fallbackHandler(endpoint, options = {}) {
     return { success: true, message: 'Your message has been sent to the church administration. We will get back to you shortly.' };
   }
 
-  // 2. Auth Routes
+  // -------------------------------------------------------------
+  // 2. AUTH ROUTES
+  // -------------------------------------------------------------
   if (endpoint === '/auth/login' && method === 'POST') {
-    const { email, password } = body;
-    const user = (db.users || []).find(u => u.email === email);
-    if (user || email.includes('@nhbcosogbo.org')) {
-      const authUser = user ? { id: user.id, name: user.name, email: user.email, role: user.role } : {
-        id: 'u-admin',
-        name: 'Pastor Administrator',
-        email: email,
-        role: email.includes('editor') ? 'contentadmin' : (email.includes('prayer') ? 'prayeradmin' : 'superadmin')
-      };
-      const token = 'nhbc-static-jwt-' + Date.now();
-      setToken(token);
-      setUser(authUser);
-      return { token, user: authUser };
+    const email = (body.email || '').toLowerCase().trim();
+    const password = body.password || '';
+
+    const user = (db.users || []).find(u => u.email.toLowerCase() === email);
+    let role = 'superadmin';
+    let name = 'Senior Pastor Administrator';
+
+    if (user) {
+      role = user.role;
+      name = user.name;
+    } else if (email.includes('editor')) {
+      role = 'contentadmin';
+      name = 'Media & Content Editor';
+    } else if (email.includes('prayer')) {
+      role = 'prayeradmin';
+      name = 'Prayer Ministry Coordinator';
     }
-    throw new Error('Invalid email or password');
+
+    const authUser = {
+      id: user?.id || 'u-' + Date.now(),
+      name,
+      email: email || 'admin@nhbcosogbo.org',
+      role
+    };
+
+    const token = 'nhbc-static-jwt-' + Date.now();
+    setToken(token);
+    setUser(authUser);
+    return { token, user: authUser };
   }
 
   if (endpoint === '/auth/me') {
     const u = getUser();
-    if (u) return u;
+    if (u) return { user: u };
     throw new Error('Not authenticated');
   }
 
-  // 3. Admin Routes
+  // -------------------------------------------------------------
+  // 3. ADMIN STATS
+  // -------------------------------------------------------------
   if (endpoint === '/admin/stats') {
+    const unhandledPrayers = (db.prayerRequests || []).filter(p => !p.handled && p.status !== 'answered').length;
+    const unreadMessages = (db.contactMessages || []).filter(m => !m.read).length;
+
     return {
+      galleryCount: (db.galleryImages || []).length,
+      totalImages: (db.galleryImages || []).length,
       galleryImages: (db.galleryImages || []).length,
+
+      sermonsCount: (db.sermons || []).length,
+      totalSermons: (db.sermons || []).length,
       sermons: (db.sermons || []).length,
+
+      eventsCount: (db.events || []).length,
+      totalEvents: (db.events || []).length,
       events: (db.events || []).length,
+
+      ministriesCount: (db.ministries || []).length,
+      totalMinistries: (db.ministries || []).length,
+      ministries: (db.ministries || []).length,
+
+      newsCount: (db.news || []).length,
+      totalNews: (db.news || []).length,
       news: (db.news || []).length,
+
+      prayersCount: (db.prayerRequests || []).length,
       prayerRequests: (db.prayerRequests || []).length,
-      unreadMessages: (db.contactMessages || []).filter(m => !m.read).length,
+      pendingPrayers: unhandledPrayers,
+      unhandledPrayers: unhandledPrayers,
+
+      messagesCount: (db.contactMessages || []).length,
+      unreadMessages: unreadMessages
     };
   }
 
+  // -------------------------------------------------------------
+  // 4. GALLERY ADMIN (Upload, Edit, Delete, Categories)
+  // -------------------------------------------------------------
+  if (endpoint === '/admin/gallery/upload' && method === 'POST') {
+    db.galleryImages = db.galleryImages || [];
+    const createdItems = [];
+
+    if (uploadedFiles.length > 0) {
+      for (let i = 0; i < uploadedFiles.length; i++) {
+        const file = uploadedFiles[i];
+        const dataUrl = await fileToDataUrl(file);
+        const item = {
+          id: 'gal-' + Date.now() + '-' + i,
+          title: body.title || file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '),
+          caption: body.description || body.caption || '',
+          description: body.description || body.caption || '',
+          category: body.category || 'Sunday Services',
+          event: body.event || '',
+          date: body.date || new Date().toISOString().split('T')[0],
+          imageUrl: dataUrl,
+          url: dataUrl,
+          featured: body.featured === 'true' || body.featured === true,
+          order: 1
+        };
+        db.galleryImages.unshift(item);
+        createdItems.push(item);
+      }
+    } else {
+      const item = {
+        id: 'gal-' + Date.now(),
+        title: body.title || 'Church Photograph',
+        caption: body.description || body.caption || '',
+        description: body.description || body.caption || '',
+        category: body.category || 'Sunday Services',
+        date: body.date || new Date().toISOString().split('T')[0],
+        imageUrl: body.imageUrl || body.url || './uploads/hero-sanctuary.svg',
+        url: body.imageUrl || body.url || './uploads/hero-sanctuary.svg',
+        featured: false,
+        order: 1
+      };
+      db.galleryImages.unshift(item);
+      createdItems.push(item);
+    }
+
+    saveDb(db);
+    return {
+      message: `Successfully uploaded ${createdItems.length} photograph(s)!`,
+      uploaded: createdItems,
+      items: createdItems
+    };
+  }
+
+  if (endpoint.startsWith('/admin/gallery/') && method === 'PUT') {
+    const id = endpoint.replace('/admin/gallery/', '');
+    const item = (db.galleryImages || []).find(g => g.id === id);
+    if (!item) throw new Error('Gallery image not found');
+    Object.assign(item, body);
+    saveDb(db);
+    return { message: 'Gallery image updated successfully.', item };
+  }
+
+  if (endpoint.startsWith('/admin/gallery/') && method === 'DELETE') {
+    const id = endpoint.replace('/admin/gallery/', '');
+    db.galleryImages = (db.galleryImages || []).filter(g => g.id !== id);
+    saveDb(db);
+    return { message: 'Photo deleted successfully.' };
+  }
+
+  if (endpoint === '/admin/gallery/categories' && method === 'POST') {
+    db.galleryCategories = db.galleryCategories || [
+      'Sunday Services', 'Worship & Choir', 'Youth Ministry', 'Children Ministry', 'Community Outreach', 'Special Events'
+    ];
+    const name = (body.name || '').trim();
+    if (name && !db.galleryCategories.includes(name)) {
+      db.galleryCategories.push(name);
+      saveDb(db);
+    }
+    return db.galleryCategories;
+  }
+
+  // -------------------------------------------------------------
+  // 5. SERMONS ADMIN (Create, Edit, Delete)
+  // -------------------------------------------------------------
+  if (endpoint === '/admin/sermons' && method === 'POST') {
+    db.sermons = db.sermons || [];
+    const newSermon = {
+      id: 'srm-' + Date.now(),
+      title: body.title,
+      speaker: body.preacher || body.speaker || 'Revd. Pastor',
+      preacher: body.preacher || body.speaker || 'Revd. Pastor',
+      scripture: body.scripture || '',
+      date: body.date || new Date().toISOString().split('T')[0],
+      series: body.series || 'Sunday Worship Service',
+      category: body.category || 'Sunday Service',
+      description: body.description || '',
+      videoUrl: body.videoUrl || '',
+      audioUrl: body.audioUrl || '',
+      thumbnailUrl: body.thumbnailUrl || './uploads/sermon-faith.svg',
+      featured: Boolean(body.featured)
+    };
+    db.sermons.unshift(newSermon);
+    saveDb(db);
+    return newSermon;
+  }
+
+  if (endpoint.startsWith('/admin/sermons/') && method === 'PUT') {
+    const id = endpoint.replace('/admin/sermons/', '');
+    const sermon = (db.sermons || []).find(s => s.id === id);
+    if (!sermon) throw new Error('Sermon not found');
+    Object.assign(sermon, body);
+    if (body.preacher) sermon.speaker = body.preacher;
+    saveDb(db);
+    return sermon;
+  }
+
+  if (endpoint.startsWith('/admin/sermons/') && method === 'DELETE') {
+    const id = endpoint.replace('/admin/sermons/', '');
+    db.sermons = (db.sermons || []).filter(s => s.id !== id);
+    saveDb(db);
+    return { success: true, message: 'Sermon deleted successfully.' };
+  }
+
+  // -------------------------------------------------------------
+  // 6. EVENTS ADMIN (Create, Edit, Delete)
+  // -------------------------------------------------------------
+  if (endpoint === '/admin/events' && method === 'POST') {
+    db.events = db.events || [];
+    const newEvent = {
+      id: 'evt-' + Date.now(),
+      title: body.title,
+      category: body.category || 'Spiritual Revival',
+      date: body.date || new Date().toISOString().split('T')[0],
+      time: body.time || '9:00 AM',
+      location: body.location || 'Church Auditorium, Osogbo',
+      description: body.description || '',
+      imageUrl: body.imageUrl || './uploads/annual-convention.svg',
+      status: body.status || 'upcoming',
+      featured: Boolean(body.featured)
+    };
+    db.events.unshift(newEvent);
+    saveDb(db);
+    return newEvent;
+  }
+
+  if (endpoint.startsWith('/admin/events/') && method === 'PUT') {
+    const id = endpoint.replace('/admin/events/', '');
+    const ev = (db.events || []).find(e => e.id === id);
+    if (!ev) throw new Error('Event not found');
+    Object.assign(ev, body);
+    saveDb(db);
+    return ev;
+  }
+
+  if (endpoint.startsWith('/admin/events/') && method === 'DELETE') {
+    const id = endpoint.replace('/admin/events/', '');
+    db.events = (db.events || []).filter(e => e.id !== id);
+    saveDb(db);
+    return { success: true, message: 'Event deleted successfully.' };
+  }
+
+  // -------------------------------------------------------------
+  // 7. NEWS & BULLETINS ADMIN (Create, Edit, Delete)
+  // -------------------------------------------------------------
+  if (endpoint === '/admin/news' && method === 'POST') {
+    db.news = db.news || [];
+    const slug = (body.title || 'news')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '') + '-' + Date.now().toString().slice(-4);
+
+    const newNews = {
+      id: 'news-' + Date.now(),
+      slug,
+      title: body.title,
+      category: body.category || 'Announcement',
+      date: body.date || new Date().toISOString().split('T')[0],
+      excerpt: body.excerpt || '',
+      content: body.content || body.excerpt || '',
+      imageUrl: body.image || body.imageUrl || './uploads/annual-convention.svg'
+    };
+    db.news.unshift(newNews);
+    saveDb(db);
+    return newNews;
+  }
+
+  if (endpoint.startsWith('/admin/news/') && method === 'PUT') {
+    const id = endpoint.replace('/admin/news/', '');
+    const item = (db.news || []).find(n => n.id === id);
+    if (!item) throw new Error('News item not found');
+    Object.assign(item, body);
+    saveDb(db);
+    return item;
+  }
+
+  if (endpoint.startsWith('/admin/news/') && method === 'DELETE') {
+    const id = endpoint.replace('/admin/news/', '');
+    db.news = (db.news || []).filter(n => n.id !== id);
+    saveDb(db);
+    return { success: true, message: 'News item deleted successfully.' };
+  }
+
+  // -------------------------------------------------------------
+  // 8. MINISTRIES ADMIN (Create, Edit, Delete)
+  // -------------------------------------------------------------
+  if (endpoint === '/admin/ministries' && method === 'POST') {
+    db.ministries = db.ministries || [];
+    const slug = body.slug || (body.name || 'ministry')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+
+    const newMin = {
+      id: 'min-' + Date.now(),
+      slug,
+      name: body.name,
+      description: body.description || '',
+      meetingTime: body.meetingTime || 'Sundays after service',
+      leader: body.leader || 'Ministry Coordinator',
+      icon: body.icon || 'Users',
+      imageUrl: body.imageUrl || './uploads/hero-sanctuary.svg'
+    };
+    db.ministries.push(newMin);
+    saveDb(db);
+    return newMin;
+  }
+
+  if (endpoint.startsWith('/admin/ministries/') && method === 'PUT') {
+    const id = endpoint.replace('/admin/ministries/', '');
+    const min = (db.ministries || []).find(m => m.id === id);
+    if (!min) throw new Error('Ministry not found');
+    Object.assign(min, body);
+    saveDb(db);
+    return min;
+  }
+
+  if (endpoint.startsWith('/admin/ministries/') && method === 'DELETE') {
+    const id = endpoint.replace('/admin/ministries/', '');
+    db.ministries = (db.ministries || []).filter(m => m.id !== id);
+    saveDb(db);
+    return { success: true, message: 'Ministry deleted successfully.' };
+  }
+
+  // -------------------------------------------------------------
+  // 9. LEADERSHIP ADMIN (Create, Edit, Delete)
+  // -------------------------------------------------------------
+  if (endpoint === '/admin/leadership' && method === 'POST') {
+    db.leadership = db.leadership || [];
+    const newLead = {
+      id: 'lead-' + Date.now(),
+      name: body.name,
+      role: body.role || 'Church Leader',
+      bio: body.bio || '',
+      image: body.image || body.imageUrl || './uploads/pastoral-welcome.svg',
+      imageUrl: body.image || body.imageUrl || './uploads/pastoral-welcome.svg',
+      contact: body.contact || '',
+      order: db.leadership.length + 1
+    };
+    db.leadership.push(newLead);
+    saveDb(db);
+    return newLead;
+  }
+
+  if (endpoint.startsWith('/admin/leadership/') && method === 'PUT') {
+    const id = endpoint.replace('/admin/leadership/', '');
+    const leader = (db.leadership || []).find(l => l.id === id);
+    if (!leader) throw new Error('Leader not found');
+    Object.assign(leader, body);
+    if (body.image) leader.imageUrl = body.image;
+    saveDb(db);
+    return leader;
+  }
+
+  if (endpoint.startsWith('/admin/leadership/') && method === 'DELETE') {
+    const id = endpoint.replace('/admin/leadership/', '');
+    db.leadership = (db.leadership || []).filter(l => l.id !== id);
+    saveDb(db);
+    return { success: true, message: 'Leader deleted successfully.' };
+  }
+
+  // -------------------------------------------------------------
+  // 10. SITE SETTINGS
+  // -------------------------------------------------------------
+  if (endpoint.startsWith('/admin/settings/') && method === 'PUT') {
+    const section = endpoint.replace('/admin/settings/', '');
+    if (!db.siteSettings) db.siteSettings = {};
+    if (section === 'general') {
+      db.siteSettings = { ...db.siteSettings, ...body };
+    } else {
+      db.siteSettings[section] = body;
+    }
+    saveDb(db);
+    return db.siteSettings;
+  }
+
+  // -------------------------------------------------------------
+  // 11. PRAYER REQUESTS & MESSAGES INBOX
+  // -------------------------------------------------------------
   if (endpoint === '/admin/prayer-requests') {
     return db.prayerRequests || [];
   }
@@ -268,6 +697,7 @@ function fallbackHandler(endpoint, options = {}) {
     const item = (db.prayerRequests || []).find(p => p.id === id);
     if (item) {
       Object.assign(item, body);
+      item.handled = true;
       saveDb(db);
     }
     return item || { success: true };
@@ -301,6 +731,9 @@ function fallbackHandler(endpoint, options = {}) {
     return { success: true };
   }
 
+  // -------------------------------------------------------------
+  // 12. STAFF ACCOUNTS
+  // -------------------------------------------------------------
   if (endpoint === '/admin/users') {
     if (method === 'GET') {
       return (db.users || []).map(u => ({ id: u.id, name: u.name, email: u.email, role: u.role, createdAt: u.createdAt }));
@@ -327,15 +760,7 @@ function fallbackHandler(endpoint, options = {}) {
     return { success: true };
   }
 
-  if (endpoint.startsWith('/admin/settings/') && method === 'PUT') {
-    const section = endpoint.replace('/admin/settings/', '');
-    if (!db.siteSettings) db.siteSettings = {};
-    db.siteSettings[section] = body;
-    saveDb(db);
-    return db.siteSettings;
-  }
-
-  // Generic fallback
+  // Fallback
   return { success: true };
 }
 
