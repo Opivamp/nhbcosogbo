@@ -74,7 +74,7 @@ export default function Ministries() {
             >
               <div className="h-52 bg-navy-950 relative overflow-hidden">
                 <img
-                  src={min.imageUrl || '/uploads/hero-sanctuary.svg'}
+                  src={min.imageUrl || './uploads/hero-sanctuary.svg'}
                   alt={min.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                 />
@@ -126,7 +126,7 @@ export default function Ministries() {
           >
             <div className="relative h-48 bg-navy-950">
               <img 
-                src={activeMinistry.imageUrl || '/uploads/hero-sanctuary.svg'} 
+                src={activeMinistry.imageUrl || './uploads/hero-sanctuary.svg'} 
                 alt={activeMinistry.name}
                 className="w-full h-full object-cover opacity-60"
               />

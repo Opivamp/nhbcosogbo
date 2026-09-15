@@ -92,7 +92,7 @@ export default function Sermons() {
               >
                 <div className="h-52 bg-navy-950 relative overflow-hidden">
                   <img 
-                    src={sermon.thumbnailUrl || '/uploads/sermon-faith.svg'} 
+                    src={sermon.thumbnailUrl || './uploads/sermon-faith.svg'} 
                     alt={sermon.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                   />
@@ -114,7 +114,7 @@ export default function Sermons() {
                   <div>
                     <div className="flex items-center gap-3 text-xs text-slate-500 mb-2">
                       <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-gold-500" /> {sermon.date}</span>
-                      {sermon.duration && <span>â€¢ {sermon.duration}</span>}
+                      {sermon.duration && <span>• {sermon.duration}</span>}
                     </div>
 
                     <h3 className="font-serif text-xl font-bold text-navy-950 mb-2 group-hover:text-gold-600 transition leading-snug">

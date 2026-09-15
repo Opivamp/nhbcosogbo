@@ -192,7 +192,7 @@ export default function LeadershipManager() {
                 </label>
                 <input
                   type="text"
-                  placeholder="/uploads/pastor.jpg"
+                  placeholder="./uploads/pastor.jpg"
                   value={formData.image}
                   onChange={(e) => setFormData({ ...formData, image: e.target.value })}
                   className="w-full px-3 py-2 rounded-lg border border-sand-300 text-sm text-navy-900"

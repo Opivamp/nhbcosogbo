@@ -89,7 +89,7 @@ export default function PrayerRequest() {
               Your prayer request has been received with pastoral love and confidence. Our ministerial team and intercessory prayer warriors will bring your petitions before the Throne of Grace.
             </p>
             <div className="bg-sand-50 p-4 rounded-xl border border-sand-200 text-sm text-navy-800 italic mb-8 max-w-md mx-auto">
-              "The prayer of a righteous person is powerful and effective." â€” James 5:16
+              "The prayer of a righteous person is powerful and effective." — James 5:16
             </div>
             <button
               onClick={() => {

@@ -221,7 +221,7 @@ export default function Give() {
               <div>
                 <p className="font-bold">{notifySuccess}</p>
                 <p className="text-xs italic text-green-700 mt-0.5">
-                  "The Lord bless you and keep you; the Lord make His face shine upon you." â€” Numbers 6:24-25
+                  "The Lord bless you and keep you; the Lord make His face shine upon you." — Numbers 6:24-25
                 </p>
               </div>
             </div>

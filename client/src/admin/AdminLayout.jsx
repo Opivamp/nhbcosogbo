@@ -54,7 +54,7 @@ export default function AdminLayout({ children }) {
       <div className="md:hidden bg-navy-900 text-white p-4 flex items-center justify-between shadow-md">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-full overflow-hidden bg-white p-0.5 ring-1 ring-gold-400/50 flex-shrink-0 flex items-center justify-center">
-            <img src="/nhbc-logo.png" alt="NHBC Logo" className="w-full h-full object-contain" />
+            <img src="./nhbc-logo.png" alt="NHBC Logo" className="w-full h-full object-contain" />
           </div>
           <span className="font-serif font-bold text-sm">NHBC Admin</span>
         </div>
@@ -76,7 +76,7 @@ export default function AdminLayout({ children }) {
           {/* Logo Brand */}
           <div className="p-6 border-b border-navy-800 flex items-center gap-3">
             <div className="w-11 h-11 rounded-full overflow-hidden bg-white p-0.5 border border-gold-400/50 flex items-center justify-center shadow-md flex-shrink-0">
-              <img src="/nhbc-logo.png" alt="NHBC Logo" className="w-full h-full object-contain" />
+              <img src="./nhbc-logo.png" alt="NHBC Logo" className="w-full h-full object-contain" />
             </div>
             <div>
               <h1 className="font-serif font-bold text-base text-white tracking-wide leading-tight">

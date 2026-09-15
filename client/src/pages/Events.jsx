@@ -78,7 +78,7 @@ export default function Events() {
               >
                 <div className="md:col-span-5 h-64 md:h-auto bg-navy-950 relative overflow-hidden">
                   <img
-                    src={evt.imageUrl || '/uploads/annual-convention.svg'}
+                    src={evt.imageUrl || './uploads/annual-convention.svg'}
                     alt={evt.title}
                     className="w-full h-full object-cover"
                   />
@@ -91,7 +91,7 @@ export default function Events() {
                   <div>
                     <div className="flex items-center gap-3 text-xs text-gold-700 font-bold mb-3 uppercase tracking-wider">
                       <Calendar className="w-4 h-4" />
-                      <span>{evt.date} {evt.endDate && evt.endDate !== evt.date ? `â€“ ${evt.endDate}` : ''}</span>
+                      <span>{evt.date} {evt.endDate && evt.endDate !== evt.date ? `– ${evt.endDate}` : ''}</span>
                     </div>
 
                     <h3 className="font-serif text-2xl font-bold text-navy-950 mb-3 leading-snug">

@@ -67,7 +67,7 @@ export default function Header() {
           <Link to="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-white p-0.5 shadow-md ring-2 ring-gold-400/50 group-hover:scale-105 transition-transform duration-300 flex-shrink-0 flex items-center justify-center">
               <img 
-                src="/nhbc-logo.png" 
+                src="./nhbc-logo.png" 
                 alt="New Heritage Baptist Church Osogbo Logo" 
                 className="w-full h-full object-contain"
               />

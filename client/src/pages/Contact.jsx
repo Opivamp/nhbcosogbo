@@ -76,7 +76,7 @@ export default function Contact() {
               <h3 className="font-serif font-bold text-navy-900 mb-1">Phone & Inquiries</h3>
               <p className="text-navy-600 text-sm">
                 [Official Church Phone Number]<br />
-                <span className="text-xs text-navy-400">Lines open Mon â€“ Sat, 9am â€“ 5pm</span>
+                <span className="text-xs text-navy-400">Lines open Mon – Sat, 9am – 5pm</span>
               </p>
             </div>
 

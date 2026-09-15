@@ -284,7 +284,7 @@ export default function SiteSettings() {
                 </label>
                 <input
                   type="text"
-                  value={settings.serviceTimes?.sundaySchool || 'Sundays: 8:30 AM â€“ 9:30 AM'}
+                  value={settings.serviceTimes?.sundaySchool || 'Sundays: 8:30 AM – 9:30 AM'}
                   onChange={(e) =>
                     setSettings({
                       ...settings,
@@ -300,7 +300,7 @@ export default function SiteSettings() {
                 </label>
                 <input
                   type="text"
-                  value={settings.serviceTimes?.sundayWorship || 'Sundays: 9:30 AM â€“ 12:00 PM'}
+                  value={settings.serviceTimes?.sundayWorship || 'Sundays: 9:30 AM – 12:00 PM'}
                   onChange={(e) =>
                     setSettings({
                       ...settings,
@@ -316,7 +316,7 @@ export default function SiteSettings() {
                 </label>
                 <input
                   type="text"
-                  value={settings.serviceTimes?.wednesdayStudy || 'Wednesdays: 5:30 PM â€“ 7:00 PM'}
+                  value={settings.serviceTimes?.wednesdayStudy || 'Wednesdays: 5:30 PM – 7:00 PM'}
                   onChange={(e) =>
                     setSettings({
                       ...settings,

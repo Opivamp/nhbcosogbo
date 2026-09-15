@@ -37,7 +37,7 @@
     "churchName": "New Heritage Baptist Church",
     "shortName": "NHBC Osogbo",
     "tagline": "A community of faith, hope, love, and transformation—growing together in Christ and serving our community.",
-    "logoUrl": "/nhbc-logo.png",
+    "logoUrl": "./nhbc-logo.png",
     "hero": {
       "headline": "Welcome to New Heritage Baptist Church, Osogbo",
       "supportingText": "A community of faith, hope, love, and transformation—growing together in Christ and serving our community in Osogbo, Osun State.",
@@ -45,7 +45,7 @@
       "primaryCtaLink": "/visit",
       "secondaryCtaText": "Explore NHBC",
       "secondaryCtaLink": "/about",
-      "bgImage": "/uploads/hero-sanctuary.svg"
+      "bgImage": "./uploads/hero-sanctuary.svg"
     },
     "welcome": {
       "heading": "Welcome to NHBC Osogbo",
@@ -53,28 +53,28 @@
       "content": "Whether you are joining us for the first time, looking for a church home, or seeking to deepen your walk with God, we are thrilled to welcome you. At New Heritage Baptist Church, Osogbo, we are a close-knit spiritual family dedicated to the undiluted Word of God, transformative worship, fervent prayer, and heartfelt fellowship. Come as you are, and discover God's extraordinary purpose for your life.",
       "pastorName": "[Revd. Dr. Lead Pastor Name]",
       "pastorTitle": "Senior Pastor, NHBC Osogbo",
-      "pastorImage": "/uploads/pastoral-welcome.svg"
+      "pastorImage": "./uploads/pastoral-welcome.svg"
     },
     "serviceTimes": [
       {
         "id": "srv-1",
         "name": "Sunday School",
         "day": "Sunday",
-        "time": "7:00 AM � 8:00 AM",
+        "time": "7:00 AM - 8:00 AM",
         "description": "In-depth interactive study of the scriptures for children, youth, and adults."
       },
       {
         "id": "srv-2",
         "name": "Sunday Worship Service",
         "day": "Sunday",
-        "time": "8:00 AM � 10:30 AM",
+        "time": "8:00 AM - 10:30 AM",
         "description": "Holy Spirit-led celebration with uplifting praise, worship, and the preaching of the Word."
       },
       {
         "id": "srv-3",
         "name": "Midweek Prayer & Bible Study",
         "day": "Wednesday",
-        "time": "5:30 PM � 7:00 PM",
+        "time": "5:30 PM - 7:00 PM",
         "description": "Fervent corporate prayer, intercession, and doctrinal empowerment for daily victory."
       }
     ],
@@ -248,7 +248,7 @@
       "name": "Revd. Ibukunoluwa",
       "role": "Senior Pastor / Minister-in-Charge",
       "bio": "Called of God with a profound passion for biblical exposition, spiritual revival, and discipleship. Under his pastoral care, NHBC Osogbo has continued to witness supernatural expansion, sound doctrine, and community empowerment.",
-      "imageUrl": "/uploads/pastoral-welcome.svg",
+      "imageUrl": "./uploads/pastoral-welcome.svg",
       "order": 1,
       "image": "file:///C:/Users/Acer/OneDrive/Pictures/new%20picture/pastor.jpg",
       "contact": ""
@@ -258,7 +258,7 @@
       "name": "[Revd. Associate Pastor Name]",
       "role": "Associate Pastor (Pastoral Care & Discipleship)",
       "bio": "Devoted to pastoral counseling, visitation, Sunday School curriculum, and nurturing new converts into mature ambassadors of Christ.",
-      "imageUrl": "/uploads/pastoral-welcome.svg",
+      "imageUrl": "./uploads/pastoral-welcome.svg",
       "order": 2
     },
     {
@@ -266,7 +266,7 @@
       "name": "[Deacon / Deaconess Board Chair]",
       "role": "Chairperson, Board of Deacons",
       "bio": "Leading the diaconate team in servant ministry, welfare administration, ordinance preparations, and spiritual assistance to the pastoral council.",
-      "imageUrl": "/uploads/pastoral-welcome.svg",
+      "imageUrl": "./uploads/pastoral-welcome.svg",
       "order": 3
     },
     {
@@ -274,7 +274,7 @@
       "name": "[Church Secretary Name]",
       "role": "Church Secretary / Administration",
       "bio": "Overseeing church administrative documentation, official correspondence, membership records, and coordinating council logistics.",
-      "imageUrl": "/uploads/pastoral-welcome.svg",
+      "imageUrl": "./uploads/pastoral-welcome.svg",
       "order": 4
     },
     {
@@ -282,7 +282,7 @@
       "name": "[Minister of Music / Choir Director]",
       "role": "Music Director (Heritage Voices)",
       "bio": "Leading the praise team and sanctuary choir in inspiring, Holy Ghost-inspired anthems, hymns, and contemporary African worship.",
-      "imageUrl": "/uploads/choir-worship.svg",
+      "imageUrl": "./uploads/choir-worship.svg",
       "order": 5
     },
     {
@@ -290,7 +290,7 @@
       "name": "[Youth Ministry Coordinator]",
       "role": "Youth & Campus Ministry Director",
       "bio": "Passionate about mentoring the next generation, coordinating youth conferences, career mentorship, and vibrant campus outreach across Osun State.",
-      "imageUrl": "/uploads/youth-fellowship.svg",
+      "imageUrl": "./uploads/youth-fellowship.svg",
       "order": 6
     }
   ],
@@ -305,7 +305,7 @@
       "meetingSchedule": "Sundays during Worship Service (8:30 AM – 10:30 AM)",
       "leader": "[Children Church Coordinator]",
       "contactEmail": "children@nhbcosogbo.org",
-      "imageUrl": "/uploads/children-ministry.svg"
+      "imageUrl": "./uploads/children-ministry.svg"
     },
     {
       "id": "min-2",
@@ -317,7 +317,7 @@
       "meetingSchedule": "Saturdays at 4:30 PM & First Sundays at 4:00 PM",
       "leader": "[Youth Pastor / Coordinator]",
       "contactEmail": "youths@nhbcosogbo.org",
-      "imageUrl": "/uploads/youth-fellowship.svg"
+      "imageUrl": "./uploads/youth-fellowship.svg"
     },
     {
       "id": "min-3",
@@ -329,7 +329,7 @@
       "meetingSchedule": "Rehearsals: Thursdays at 5:30 PM & Saturdays at 4:00 PM",
       "leader": "[Director of Music]",
       "contactEmail": "music@nhbcosogbo.org",
-      "imageUrl": "/uploads/choir-worship.svg"
+      "imageUrl": "./uploads/choir-worship.svg"
     },
     {
       "id": "min-4",
@@ -341,7 +341,7 @@
       "meetingSchedule": "Tuesdays at 4:30 PM & Monthly General Meetings",
       "leader": "[WMU President]",
       "contactEmail": "wmu@nhbcosogbo.org",
-      "imageUrl": "/uploads/women-wmu.svg"
+      "imageUrl": "./uploads/women-wmu.svg"
     },
     {
       "id": "min-5",
@@ -353,7 +353,7 @@
       "meetingSchedule": "Third Sunday of every month after service",
       "leader": "[MMU President]",
       "contactEmail": "mmu@nhbcosogbo.org",
-      "imageUrl": "/uploads/men-bmu.svg"
+      "imageUrl": "./uploads/men-bmu.svg"
     },
     {
       "id": "min-6",
@@ -365,7 +365,7 @@
       "meetingSchedule": "Every Sunday from 7:00 AM – 8:00 AM",
       "leader": "[Sunday School Superintendent]",
       "contactEmail": "sundayschool@nhbcosogbo.org",
-      "imageUrl": "/uploads/hero-sanctuary.svg"
+      "imageUrl": "./uploads/hero-sanctuary.svg"
     },
     {
       "id": "min-7",
@@ -377,7 +377,7 @@
       "meetingSchedule": "Second & Fourth Saturdays at 9:00 AM",
       "leader": "[Evangelism Secretary]",
       "contactEmail": "missions@nhbcosogbo.org",
-      "imageUrl": "/uploads/community-outreach.svg"
+      "imageUrl": "./uploads/community-outreach.svg"
     },
     {
       "id": "min-8",
@@ -389,7 +389,7 @@
       "meetingSchedule": "Fridays at 6:00 PM & Monthly Night Vigils (11:00 PM)",
       "leader": "[Prayer Leader]",
       "contactEmail": "prayer@nhbcosogbo.org",
-      "imageUrl": "/uploads/hero-sanctuary.svg"
+      "imageUrl": "./uploads/hero-sanctuary.svg"
     }
   ],
   "sermons": [
@@ -404,7 +404,7 @@
       "description": "An illuminating exposition on the immeasurable power made available to every believer in Christ. Discover how to shift from human anxiety to supernatural reliance on the Holy Spirit.",
       "audioUrl": "https://archive.org/download/sample-audio-clip/sample.mp3",
       "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      "thumbnailUrl": "/uploads/sermon-faith.svg",
+      "thumbnailUrl": "./uploads/sermon-faith.svg",
       "duration": "48 mins",
       "featured": true
     },
@@ -419,7 +419,7 @@
       "description": "A message of comfort and divine assurance during turbulent times. The Lord who keeps Israel neither slumbers nor sleeps—He is your shade upon your right hand.",
       "audioUrl": "https://archive.org/download/sample-audio-clip/sample.mp3",
       "videoUrl": "",
-      "thumbnailUrl": "/uploads/sermon-grace.svg",
+      "thumbnailUrl": "./uploads/sermon-grace.svg",
       "duration": "52 mins",
       "featured": false
     },
@@ -434,7 +434,7 @@
       "description": "Understanding that God loves a cheerful giver. Biblical principles for managing finances, honoring God with tithes, and sowing seed toward eternal rewards.",
       "audioUrl": "https://archive.org/download/sample-audio-clip/sample.mp3",
       "videoUrl": "",
-      "thumbnailUrl": "/uploads/hero-sanctuary.svg",
+      "thumbnailUrl": "./uploads/hero-sanctuary.svg",
       "duration": "44 mins",
       "featured": false
     },
@@ -449,7 +449,7 @@
       "description": "A clarion call to parents and youth to kindle the flame of family worship, personal holiness, and spiritual sensitivity amidst cultural pressures.",
       "audioUrl": "https://archive.org/download/sample-audio-clip/sample.mp3",
       "videoUrl": "",
-      "thumbnailUrl": "/uploads/youth-fellowship.svg",
+      "thumbnailUrl": "./uploads/youth-fellowship.svg",
       "duration": "50 mins",
       "featured": false
     }
@@ -464,7 +464,7 @@
       "location": "NHBC Main Sanctuary, Along Osogbo-Ikirun Road, Osogbo",
       "category": "Conferences",
       "description": "Our premier annual gathering of faith, revival, healing, and prophetic empowerment. Featuring anointed guest speakers, powerful worship by Heritage Voices, and impartation for all spheres of life.",
-      "imageUrl": "/uploads/annual-convention.svg",
+      "imageUrl": "./uploads/annual-convention.svg",
       "registrationLink": "https://forms.gle/sampleNHBCRegister",
       "featured": true,
       "status": "upcoming"
@@ -478,7 +478,7 @@
       "location": "NHBC Church Auditorium, Osogbo",
       "category": "Worship",
       "description": "An all-night marathon of uninterrupted high praise, intense intercession, communion, and breakthroughs for individuals, families, and our city.",
-      "imageUrl": "/uploads/choir-worship.svg",
+      "imageUrl": "./uploads/choir-worship.svg",
       "registrationLink": "",
       "featured": true,
       "status": "upcoming"
@@ -492,7 +492,7 @@
       "location": "NHBC Premises & Community Centers, Osogbo",
       "category": "Outreach",
       "description": "Free medical consultations, blood pressure & sugar screenings, medication distribution, welfare food packages, and the sharing of God's saving love.",
-      "imageUrl": "/uploads/community-outreach.svg",
+      "imageUrl": "./uploads/community-outreach.svg",
       "registrationLink": "",
       "featured": false,
       "status": "upcoming"
@@ -506,7 +506,7 @@
       "location": "NHBC Fellowship Hall, Osogbo",
       "category": "Youth",
       "description": "Equipping secondary, tertiary, and career youths with tech skills, entrepreneurship mentorship, and spiritual foundations.",
-      "imageUrl": "/uploads/youth-fellowship.svg",
+      "imageUrl": "./uploads/youth-fellowship.svg",
       "registrationLink": "",
       "featured": false,
       "status": "past"
@@ -534,8 +534,8 @@
       "category": "Conferences",
       "event": "",
       "date": "2026-09-14",
-      "imageUrl": "/uploads/nhbc-239443-1789368249621-312772.jpg",
-      "url": "/uploads/nhbc-239443-1789368249621-312772.jpg",
+      "imageUrl": "./uploads/nhbc-239443-1789368249621-312772.jpg",
+      "url": "./uploads/nhbc-239443-1789368249621-312772.jpg",
       "featured": false,
       "order": 21
     },
@@ -547,8 +547,8 @@
       "category": "Conferences",
       "event": "",
       "date": "2026-09-14",
-      "imageUrl": "/uploads/nhbc-239437-1789368249621-31733.jpg",
-      "url": "/uploads/nhbc-239437-1789368249621-31733.jpg",
+      "imageUrl": "./uploads/nhbc-239437-1789368249621-31733.jpg",
+      "url": "./uploads/nhbc-239437-1789368249621-31733.jpg",
       "featured": false,
       "order": 19
     },
@@ -560,8 +560,8 @@
       "category": "Conferences",
       "event": "",
       "date": "2026-09-14",
-      "imageUrl": "/uploads/nhbc-239436-1789368249620-964195.jpg",
-      "url": "/uploads/nhbc-239436-1789368249620-964195.jpg",
+      "imageUrl": "./uploads/nhbc-239436-1789368249620-964195.jpg",
+      "url": "./uploads/nhbc-239436-1789368249620-964195.jpg",
       "featured": false,
       "order": 17
     },
@@ -573,8 +573,8 @@
       "category": "Conferences",
       "event": "",
       "date": "2026-09-14",
-      "imageUrl": "/uploads/nhbc-239434-1789368249617-897812.jpg",
-      "url": "/uploads/nhbc-239434-1789368249617-897812.jpg",
+      "imageUrl": "./uploads/nhbc-239434-1789368249617-897812.jpg",
+      "url": "./uploads/nhbc-239434-1789368249617-897812.jpg",
       "featured": false,
       "order": 15
     },
@@ -586,8 +586,8 @@
       "category": "Church Services",
       "event": "",
       "date": "2026-09-13",
-      "imageUrl": "/uploads/nhbc-239481-1789358046068-744957.jpg",
-      "url": "/uploads/nhbc-239481-1789358046068-744957.jpg",
+      "imageUrl": "./uploads/nhbc-239481-1789358046068-744957.jpg",
+      "url": "./uploads/nhbc-239481-1789358046068-744957.jpg",
       "featured": false,
       "order": 19
     },
@@ -599,8 +599,8 @@
       "category": "Church Services",
       "event": "",
       "date": "2026-09-13",
-      "imageUrl": "/uploads/nhbc-239474-1789358046066-941240.jpg",
-      "url": "/uploads/nhbc-239474-1789358046066-941240.jpg",
+      "imageUrl": "./uploads/nhbc-239474-1789358046066-941240.jpg",
+      "url": "./uploads/nhbc-239474-1789358046066-941240.jpg",
       "featured": false,
       "order": 15
     },
@@ -612,8 +612,8 @@
       "category": "Church Services",
       "event": "",
       "date": "2026-09-13",
-      "imageUrl": "/uploads/nhbc-239469-1789358046066-670104.jpg",
-      "url": "/uploads/nhbc-239469-1789358046066-670104.jpg",
+      "imageUrl": "./uploads/nhbc-239469-1789358046066-670104.jpg",
+      "url": "./uploads/nhbc-239469-1789358046066-670104.jpg",
       "featured": false,
       "order": 13
     },
@@ -625,8 +625,8 @@
       "category": "Church Services",
       "event": "",
       "date": "2026-09-13",
-      "imageUrl": "/uploads/nhbc-239451-1789358046064-661016.jpg",
-      "url": "/uploads/nhbc-239451-1789358046064-661016.jpg",
+      "imageUrl": "./uploads/nhbc-239451-1789358046064-661016.jpg",
+      "url": "./uploads/nhbc-239451-1789358046064-661016.jpg",
       "featured": false,
       "order": 11
     },
@@ -638,8 +638,8 @@
       "category": "Church Services",
       "event": "",
       "date": "2026-09-13",
-      "imageUrl": "/uploads/nhbc-239450-1789358046063-700805.jpg",
-      "url": "/uploads/nhbc-239450-1789358046063-700805.jpg",
+      "imageUrl": "./uploads/nhbc-239450-1789358046063-700805.jpg",
+      "url": "./uploads/nhbc-239450-1789358046063-700805.jpg",
       "featured": false,
       "order": 9
     },
@@ -650,7 +650,7 @@
       "category": "Worship",
       "event": "Sunday Worship Service",
       "date": "2026-09-06",
-      "imageUrl": "/uploads/hero-sanctuary.svg",
+      "imageUrl": "./uploads/hero-sanctuary.svg",
       "featured": true,
       "order": 1
     },
@@ -661,7 +661,7 @@
       "category": "Worship",
       "event": "Thanksgiving Service",
       "date": "2026-08-30",
-      "imageUrl": "/uploads/choir-worship.svg",
+      "imageUrl": "./uploads/choir-worship.svg",
       "featured": true,
       "order": 2
     },
@@ -672,7 +672,7 @@
       "category": "Youth",
       "event": "Youth Fellowship",
       "date": "2026-08-22",
-      "imageUrl": "/uploads/youth-fellowship.svg",
+      "imageUrl": "./uploads/youth-fellowship.svg",
       "featured": true,
       "order": 3
     },
@@ -683,7 +683,7 @@
       "category": "Children",
       "event": "Children Sunday",
       "date": "2026-08-16",
-      "imageUrl": "/uploads/children-ministry.svg",
+      "imageUrl": "./uploads/children-ministry.svg",
       "featured": true,
       "order": 4
     },
@@ -694,7 +694,7 @@
       "category": "Women",
       "event": "WMU Annual Conference",
       "date": "2026-08-09",
-      "imageUrl": "/uploads/women-wmu.svg",
+      "imageUrl": "./uploads/women-wmu.svg",
       "featured": true,
       "order": 5
     },
@@ -705,7 +705,7 @@
       "category": "Men",
       "event": "MMU Monthly Fellowship",
       "date": "2026-08-02",
-      "imageUrl": "/uploads/men-bmu.svg",
+      "imageUrl": "./uploads/men-bmu.svg",
       "featured": true,
       "order": 6
     },
@@ -716,7 +716,7 @@
       "category": "Outreach",
       "event": "Community Outreach",
       "date": "2026-07-25",
-      "imageUrl": "/uploads/community-outreach.svg",
+      "imageUrl": "./uploads/community-outreach.svg",
       "featured": false,
       "order": 7
     },
@@ -727,7 +727,7 @@
       "category": "Church Services",
       "event": "Holy Communion",
       "date": "2026-07-05",
-      "imageUrl": "/uploads/communion-service.svg",
+      "imageUrl": "./uploads/communion-service.svg",
       "featured": false,
       "order": 8
     }
@@ -742,7 +742,7 @@
       "category": "Announcements",
       "excerpt": "The church leadership invites all members, friends, and the general public in Osogbo to our flagship 4-day annual convention.",
       "content": "We are delighted to announce that all preparations for our 2026 Believers' Heritage Convention are underway. The theme for this year's encounter promises a transformative outpouring of grace, prophetic direction, and divine establishment. We encourage members to invite neighbors, colleagues, and family members. Transportation arrangements from major junctions across Osogbo will be communicated soon.",
-      "imageUrl": "/uploads/annual-convention.svg",
+      "imageUrl": "./uploads/annual-convention.svg",
       "featured": true
     },
     {
@@ -754,7 +754,7 @@
       "category": "Ministry News",
       "excerpt": "Our Children's Department has rolled out an enriched biblical teaching curriculum with illustrated workbooks and memory crafts.",
       "content": "To foster deeper understanding and love for God's Word among our young ones, the Children Ministry has introduced a specialized illustrated curriculum. Every Sunday, children will explore biblical narratives with tactile crafts, audio-visual Bible lessons, and take-home family devotion sheets. Parents are encouraged to review these sheets with their children during the week.",
-      "imageUrl": "/uploads/children-ministry.svg",
+      "imageUrl": "./uploads/children-ministry.svg",
       "featured": false
     },
     {
@@ -766,7 +766,7 @@
       "category": "Outreach",
       "excerpt": "Over 120 women and youths benefited from free vocational training in catering, craft-making, and financial budgeting.",
       "content": "The Women's Missionary Union of NHBC Osogbo successfully rounded off its annual community outreach week. Aside from donating food provisions and toiletries to widows and elderly community members, participants received hands-on coaching in soap making, confectionery, and modern home management. Glory to God for touching lives through our collective giving.",
-      "imageUrl": "/uploads/women-wmu.svg",
+      "imageUrl": "./uploads/women-wmu.svg",
       "featured": false
     }
   ],

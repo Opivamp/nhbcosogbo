@@ -40,9 +40,9 @@ export default function Home() {
 
   const { siteSettings, serviceTimes, scripture, upcomingEvents, featuredSermon, previewGallery, ministries } = data || {};
   const defaultServices = [
-    { id: 'srv-1', name: 'Sunday School', day: 'Sunday', time: '7:00 AM � 8:00 AM', description: 'In-depth interactive study of the scriptures for children, youth, and adults.' },
-    { id: 'srv-2', name: 'Sunday Worship Service', day: 'Sunday', time: '8:00 AM � 10:30 AM', description: 'Holy Spirit-led celebration with uplifting praise, worship, and the preaching of the Word.' },
-    { id: 'srv-3', name: 'Midweek Prayer & Bible Study', day: 'Wednesday', time: '5:30 PM � 7:00 PM', description: 'Fervent corporate prayer, intercession, and doctrinal empowerment for daily victory.' }
+    { id: 'srv-1', name: 'Sunday School', day: 'Sunday', time: '7:00 AM - 8:00 AM', description: 'In-depth interactive study of the scriptures for children, youth, and adults.' },
+    { id: 'srv-2', name: 'Sunday Worship Service', day: 'Sunday', time: '8:00 AM - 10:30 AM', description: 'Holy Spirit-led celebration with uplifting praise, worship, and the preaching of the Word.' },
+    { id: 'srv-3', name: 'Midweek Prayer & Bible Study', day: 'Wednesday', time: '5:30 PM - 7:00 PM', description: 'Fervent corporate prayer, intercession, and doctrinal empowerment for daily victory.' }
   ];
   const serviceList = Array.isArray(serviceTimes) && serviceTimes.length > 0
     ? serviceTimes
@@ -58,7 +58,7 @@ export default function Home() {
       <section className="relative min-h-[85vh] flex items-center justify-center bg-navy-950 text-white overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105"
-          style={{ backgroundImage: `url(${hero.bgImage || '/uploads/hero-sanctuary.svg'})` }}
+          style={{ backgroundImage: `url(${hero.bgImage || './uploads/hero-sanctuary.svg'})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/85 to-navy-900/80 backdrop-blur-[2px]" />
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-gold-500/10 blur-[120px] rounded-full pointer-events-none" />
@@ -68,7 +68,7 @@ export default function Home() {
           <div className="mb-6 group">
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white p-1.5 shadow-2xl ring-4 ring-gold-400/40 flex items-center justify-center mx-auto group-hover:scale-105 transition-transform duration-300">
               <img 
-                src="/nhbc-logo.png" 
+                src="./nhbc-logo.png" 
                 alt="New Heritage Baptist Church Osogbo Emblem" 
                 className="w-full h-full object-contain"
               />
@@ -83,7 +83,7 @@ export default function Home() {
           </h1>
 
           <p className="text-base sm:text-xl text-slate-200 max-w-2xl font-light leading-relaxed mb-10">
-            {hero.supportingText || 'A community of faith, hope, love, and transformationâ€”growing together in Christ and serving our community in Osogbo, Osun State.'}
+            {hero.supportingText || 'A community of faith, hope, love, and transformation—growing together in Christ and serving our community in Osogbo, Osun State.'}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
@@ -115,7 +115,7 @@ export default function Home() {
               </div>
               <div>
                 <span className="text-xs text-gold-400 uppercase tracking-wider font-semibold">Join Us In Worship</span>
-                <p className="text-base font-semibold text-white">Sundays â€¢ 8:00 AM â€� 10:30 AM</p>
+                <p className="text-base font-semibold text-white">Sundays • 8:00 AM - 10:30 AM</p>
                 <p className="text-xs text-slate-400">Sunday School begins at 7:00 AM</p>
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function Home() {
               </div>
               <div>
                 <span className="text-xs text-gold-400 uppercase tracking-wider font-semibold">Midweek Service</span>
-                <p className="text-base font-semibold text-white">Wednesdays â€¢ 5:30 PM</p>
+                <p className="text-base font-semibold text-white">Wednesdays • 5:30 PM</p>
                 <p className="text-xs text-slate-400">Prayer & Bible Exposition</p>
               </div>
             </div>
@@ -139,7 +139,7 @@ export default function Home() {
                 <span className="text-xs text-gold-400 uppercase tracking-wider font-semibold">Our Location</span>
                 <p className="text-base font-semibold text-white truncate max-w-xs">Osogbo, Osun State</p>
                 <Link to="/visit" className="text-xs text-gold-400 hover:text-gold-300 font-medium underline">
-                  Get directions & parking info â†’
+                  Get directions & parking info →
                 </Link>
               </div>
             </div>
@@ -156,7 +156,7 @@ export default function Home() {
                 <div className="absolute -top-4 -left-4 w-full h-full border-2 border-gold-400/40 rounded-2xl pointer-events-none" />
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-navy-950">
                   <img
-                    src={welcome.pastorImage || '/uploads/pastoral-welcome.svg'}
+                    src={welcome.pastorImage || './uploads/pastoral-welcome.svg'}
                     alt={welcome.pastorName || 'Pastorate'}
                     className="w-full h-auto object-cover max-h-[480px] hover:scale-105 transition-transform duration-500"
                   />
@@ -262,7 +262,7 @@ export default function Home() {
             <div className="bg-navy-900/90 rounded-3xl p-6 sm:p-10 border border-navy-800 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-5 relative group rounded-2xl overflow-hidden shadow-lg bg-navy-950">
                 <img 
-                  src={featuredSermon.thumbnailUrl || '/uploads/sermon-faith.svg'} 
+                  src={featuredSermon.thumbnailUrl || './uploads/sermon-faith.svg'} 
                   alt={featuredSermon.title} 
                   className="w-full h-auto max-h-[320px] object-cover group-hover:scale-105 transition duration-500"
                 />
@@ -282,7 +282,7 @@ export default function Home() {
                   <span className="bg-gold-500/20 px-2.5 py-1 rounded-full border border-gold-500/30">
                     {featuredSermon.category || 'Message'}
                   </span>
-                  <span>â€¢</span>
+                  <span>•</span>
                   <span>{featuredSermon.date}</span>
                 </div>
 
@@ -321,7 +321,7 @@ export default function Home() {
                     to="/sermons"
                     className="text-xs font-semibold text-gold-400 hover:text-gold-300 underline"
                   >
-                    Browse sermon series â†’
+                    Browse sermon series →
                   </Link>
                 </div>
               </div>
@@ -351,7 +351,7 @@ export default function Home() {
               >
                 <div className="relative h-48 bg-navy-950 overflow-hidden">
                   <img 
-                    src={evt.imageUrl || '/uploads/annual-convention.svg'} 
+                    src={evt.imageUrl || './uploads/annual-convention.svg'} 
                     alt={evt.title} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -364,7 +364,7 @@ export default function Home() {
                   <div>
                     <div className="flex items-center gap-2 text-xs text-gold-700 font-semibold mb-2">
                       <Calendar className="w-3.5 h-3.5" />
-                      <span>{evt.date} {evt.endDate && evt.endDate !== evt.date ? `â€� ${evt.endDate}` : ''}</span>
+                      <span>{evt.date} {evt.endDate && evt.endDate !== evt.date ? ` - ${evt.endDate}` : ''}</span>
                     </div>
 
                     <h3 className="font-serif text-xl font-bold text-navy-950 mb-2 leading-snug group-hover:text-gold-600 transition">
@@ -418,7 +418,7 @@ export default function Home() {
               >
                 <div className="h-44 bg-navy-950 relative overflow-hidden">
                   <img 
-                    src={min.imageUrl || '/uploads/hero-sanctuary.svg'} 
+                    src={min.imageUrl || './uploads/hero-sanctuary.svg'} 
                     alt={min.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -514,11 +514,11 @@ export default function Home() {
           </div>
 
           <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-100 italic leading-relaxed mb-4">
-            {scripture?.verse || 'â€œBut seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.â€'}
+            {scripture?.verse || '“But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.”'}
           </h3>
 
           <p className="text-gold-400 font-semibold text-base tracking-wider uppercase">
-            â€” {scripture?.reference || 'Matthew 6:33 (KJV)'}
+            — {scripture?.reference || 'Matthew 6:33 (KJV)'}
           </p>
 
           {scripture?.theme && (

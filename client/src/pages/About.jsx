@@ -36,7 +36,7 @@ export default function About() {
         <div className="max-w-4xl mx-auto px-4 flex flex-col items-center">
           <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white p-1 shadow-2xl ring-4 ring-gold-400/40 flex items-center justify-center mb-6">
             <img 
-              src="/nhbc-logo.png" 
+              src="./nhbc-logo.png" 
               alt="New Heritage Baptist Church Osogbo Emblem" 
               className="w-full h-full object-contain"
             />
@@ -162,7 +162,7 @@ export default function About() {
               >
                 <div className="h-64 bg-navy-950 overflow-hidden relative">
                   <img 
-                    src={lead.imageUrl || '/uploads/pastoral-welcome.svg'} 
+                    src={lead.imageUrl || './uploads/pastoral-welcome.svg'} 
                     alt={lead.name}
                     className="w-full h-full object-cover"
                   />

@@ -1,7 +1,7 @@
 import initialDb from '../data/db.json';
 
 const API_BASE = '/api';
-const DB_STORAGE_KEY = 'nhbc_local_database_v2';
+const DB_STORAGE_KEY = 'nhbc_local_database_v3';
 
 export function getToken() {
   return localStorage.getItem('nhbc_token');
@@ -23,16 +23,38 @@ export function setUser(user) {
 }
 
 // Local mock database helpers for static hosting (GitHub Pages)
+
+function sanitizeAssetUrls(data) {
+  if (!data) return data;
+  if (typeof data === 'string') {
+    if (data.startsWith('/uploads/') || data === '/nhbc-logo.png' || data === '/logo.png') {
+      return '.' + data;
+    }
+    return data;
+  }
+  if (Array.isArray(data)) {
+    return data.map(sanitizeAssetUrls);
+  }
+  if (typeof data === 'object') {
+    const res = {};
+    for (const key of Object.keys(data)) {
+      res[key] = sanitizeAssetUrls(data[key]);
+    }
+    return res;
+  }
+  return data;
+}
+
 function getDb() {
   try {
     const cached = localStorage.getItem(DB_STORAGE_KEY);
     if (cached) {
-      return JSON.parse(cached);
+      return sanitizeAssetUrls(JSON.parse(cached));
     }
   } catch (e) {
     console.warn('Could not read from localStorage, using initialDb');
   }
-  const cloned = JSON.parse(JSON.stringify(initialDb));
+  const cloned = sanitizeAssetUrls(JSON.parse(JSON.stringify(initialDb)));
   saveDb(cloned);
   return cloned;
 }

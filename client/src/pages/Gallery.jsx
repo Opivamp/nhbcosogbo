@@ -42,7 +42,7 @@ export default function Gallery() {
             Church Photo Gallery
           </h1>
           <p className="text-navy-200 text-lg max-w-2xl mx-auto">
-            Witness Godâ€™s work, joy, and spiritual communion across worship services, youth fellowships, outreach missions, and church celebrations in NHBC Osogbo.
+            Witness God’s work, joy, and spiritual communion across worship services, youth fellowships, outreach missions, and church celebrations in NHBC Osogbo.
           </p>
         </div>
       </div>

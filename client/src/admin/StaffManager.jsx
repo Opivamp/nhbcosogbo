@@ -206,7 +206,7 @@ export default function StaffManager() {
                 <input
                   type="password"
                   required
-                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                  placeholder="••••••••"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   className="w-full px-3 py-2 rounded-lg border border-sand-300 text-sm text-navy-900 focus:ring-2 focus:ring-gold-500"

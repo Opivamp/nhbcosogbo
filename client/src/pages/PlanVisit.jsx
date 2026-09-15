@@ -30,7 +30,7 @@ export default function PlanVisit() {
     },
     {
       q: 'Is there something for my children?',
-      a: 'Yes! We have an active, safe, and engaging Childrenâ€™s Church with vetted teachers who nurture young hearts with biblical lessons, songs, and age-appropriate activities.',
+      a: 'Yes! We have an active, safe, and engaging Children’s Church with vetted teachers who nurture young hearts with biblical lessons, songs, and age-appropriate activities.',
     },
     {
       q: 'Where do I park when I arrive?',
@@ -50,7 +50,7 @@ export default function PlanVisit() {
         <div className="max-w-6xl mx-auto text-center relative z-10 flex flex-col items-center">
           <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white p-1 shadow-xl ring-2 ring-gold-400/40 flex items-center justify-center mb-4">
             <img 
-              src="/nhbc-logo.png" 
+              src="./nhbc-logo.png" 
               alt="NHBC Osogbo Logo" 
               className="w-full h-full object-contain"
             />

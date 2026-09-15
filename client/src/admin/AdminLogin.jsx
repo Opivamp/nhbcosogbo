@@ -41,7 +41,7 @@ export default function AdminLogin() {
         </Link>
         <div className="w-20 h-20 rounded-full bg-white p-1 border-2 border-gold-400/50 flex items-center justify-center mx-auto mb-4 shadow-2xl ring-4 ring-navy-900">
           <img 
-            src="/nhbc-logo.png" 
+            src="./nhbc-logo.png" 
             alt="New Heritage Baptist Church Osogbo Logo" 
             className="w-full h-full object-contain"
           />
