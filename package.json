@@ -8,6 +8,8 @@
     "server": "node server/index.js",
     "client": "cd client && npm run dev",
     "dev": "node server/index.js",
+    "build": "cd client && npm run build",
+    "vercel-build": "cd client && npm install && npm run build",
     "build:client": "cd client && npm run build"
   },
   "keywords": ["church", "nhbc", "osogbo", "baptist", "cms"],
